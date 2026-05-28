@@ -101,23 +101,6 @@ All admin endpoints are nonce-protected and capability-gated (`manage_ackm_chata
 
 ---
 
-## 🤝 Contributing
-
-Pull requests and issues welcome. For larger changes, please open an issue first to discuss what you'd like to change.
-
-```bash
-# Local development
-git clone https://github.com/erp-linker/erplinker-chatassist.git
-cd erplinker-chatassist
-# Symlink into your local WP install:
-ln -s "$(pwd)" /path/to/wordpress/wp-content/plugins/intelligizedigital-chatassist
-```
-
-Before submitting a PR:
-- Test on a clean WP install with `WP_DEBUG = true`
-- Run **Plugin Check** (https://wordpress.org/plugins/plugin-check/) — should be green
-- Follow WordPress Coding Standards (`phpcs --standard=WordPress`)
-
 ---
 
 ## 📜 Changelog
