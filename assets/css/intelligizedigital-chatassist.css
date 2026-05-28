@@ -1,0 +1,294 @@
+/* Intelligize ChatAssist Styles */
+.intelligizedigital-chatassist-container {
+    position: fixed;
+    bottom: 20px;
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.intelligizedigital-chatassist-position-right {
+    right: 20px;
+}
+
+.intelligizedigital-chatassist-position-left {
+    left: 20px;
+}
+
+.intelligizedigital-chatassist-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #667eea;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.intelligizedigital-chatassist-button:hover {
+    background-color: #37b2b2;
+    transform: scale(1.05);
+}
+
+.intelligizedigital-chatassist-open .intelligizedigital-chatassist-button {
+    transform: scale(0.9);
+}
+
+.intelligizedigital-chatassist-icon {
+    font-size: 24px;
+}
+
+.intelligizedigital-chatassist-svg-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.intelligizedigital-chatassist-svg-icon img,
+.intelligizedigital-chatassist-svg-icon .svg-icon,
+.intelligizedigital-chatassist-svg-wrapper img {
+    max-width: 60%;
+    max-height: 60%;
+    width: 24px !important;
+    height: 24px !important;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+}
+
+.intelligizedigital-chatassist-svg-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intelligizedigital-chatassist-popup {
+    position: absolute;
+    bottom: 80px;
+    width: 350px;
+    height: 500px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.intelligizedigital-chatassist-popup-open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intelligizedigital-chatassist-position-right .intelligizedigital-chatassist-popup {
+    right: 0;
+}
+
+.intelligizedigital-chatassist-position-left .intelligizedigital-chatassist-popup {
+    left: 0;
+}
+
+.intelligizedigital-chatassist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: #667eea;
+    color: white;
+}
+
+.intelligizedigital-chatassist-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.intelligizedigital-chatassist-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+}
+
+.intelligizedigital-chatassist-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.intelligizedigital-chatassist-frame-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#intelligizedigital-chatassist-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+    transform-origin: top left;
+}
+
+.intelligizedigital-chatassist-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.intelligizedigital-chatassist-loading::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: intelligizedigital-chatassist-spin 1s linear infinite;
+}
+
+@keyframes intelligizedigital-chatassist-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Unread badge */
+.intelligizedigital-chatassist-button {
+    position: relative;
+}
+.intelligizedigital-chatassist-unread-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ef4444;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+/* Delayed show */
+.intelligizedigital-chatassist-delayed .intelligizedigital-chatassist-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Proactive message bubble */
+.intelligizedigital-chatassist-proactive-bubble {
+    position: absolute;
+    bottom: 80px;
+    max-width: 220px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+.intelligizedigital-chatassist-proactive-bubble.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.intelligizedigital-chatassist-position-right .intelligizedigital-chatassist-proactive-bubble { right: 0; }
+.intelligizedigital-chatassist-position-left .intelligizedigital-chatassist-proactive-bubble { left: 0; }
+
+/* Pre-chat form */
+.intelligizedigital-chatassist-prechat-wrapper { padding: 20px; }
+.intelligizedigital-chatassist-prechat-wrapper p { margin: 0 0 15px 0; }
+.intelligizedigital-chatassist-prechat-wrapper label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; }
+.intelligizedigital-chatassist-prechat-wrapper input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+.intelligizedigital-chatassist-prechat-submit { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 10px; }
+
+/* GDPR Consent banner */
+.intelligizedigital-chatassist-consent-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+    z-index: 999998;
+    font-size: 14px;
+}
+.intelligizedigital-chatassist-consent-banner p { margin: 0 0 15px 0; }
+.intelligizedigital-chatassist-consent-buttons { display: flex; gap: 10px; }
+.intelligizedigital-chatassist-consent-btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.intelligizedigital-chatassist-consent-btn.accept { background: #667eea; color: white; }
+.intelligizedigital-chatassist-consent-btn.decline { background: #e5e7eb; color: #374151; }
+
+/* Typing indicator */
+.intelligizedigital-chatassist-typing-indicator { padding: 10px; display: flex; gap: 4px; align-items: center; }
+.intelligizedigital-chatassist-typing-indicator span { width: 8px; height: 8px; background: #667eea; border-radius: 50%; animation: intelligizedigital-chatassist-typing 1.4s ease-in-out infinite both; }
+.intelligizedigital-chatassist-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.intelligizedigital-chatassist-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes intelligizedigital-chatassist-typing { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
+
+/* Collapsible layout */
+.intelligizedigital-chatassist-collapsible .intelligizedigital-chatassist-popup { max-height: 80vh; transition: max-height 0.3s ease; }
+
+/* Dark theme */
+.intelligizedigital-chatassist-theme-dark .intelligizedigital-chatassist-popup { background: #1e293b; }
+.intelligizedigital-chatassist-theme-dark .intelligizedigital-chatassist-frame-container { background: #1e293b; }
+
+@media (max-width: 480px) {
+    .intelligizedigital-chatassist-popup {
+        width: 100%;
+        height: 80vh;
+        position: fixed;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .intelligizedigital-chatassist-mobile .intelligizedigital-chatassist-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .intelligizedigital-chatassist-mobile .intelligizedigital-chatassist-icon {
+        font-size: 20px;
+    }
+}
+
+/* Utility classes replacing inline style="display:none" */
+.intelligizedigital-chatassist-hidden { display: none; }
