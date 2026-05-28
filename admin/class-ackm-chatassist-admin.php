@@ -1103,11 +1103,11 @@ class Ackm_ChatAssist_Admin {
 
             <!-- Support Links -->
             <div class="ackm-chatassist-support-links">
-                <a href="https://github.com/erp-linker/erplinker-chatassist/issues/new" target="_blank" rel="noopener noreferrer" class="ackm-chatassist-support-link">
+                <a href="https://github.com/ackm04/chatassist/issues/new" target="_blank" rel="noopener noreferrer" class="ackm-chatassist-support-link">
                     <span class="dashicons dashicons-admin-tools"></span>
                     <?php esc_html_e('Report Bug or Request a Feature', 'intelligizedigital-chatassist'); ?>
                 </a>
-                <a href="https://github.com/erp-linker/erplinker-chatassist" target="_blank" rel="noopener noreferrer" class="ackm-chatassist-support-link">
+                <a href="https://github.com/ackm04/chatassist" target="_blank" rel="noopener noreferrer" class="ackm-chatassist-support-link">
                     <span class="dashicons dashicons-admin-site"></span>
                     <?php esc_html_e('View on GitHub', 'intelligizedigital-chatassist'); ?>
                 </a>

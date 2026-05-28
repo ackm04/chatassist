@@ -1,0 +1,22 @@
+title: ChatAssist by Ajay
+description: A lightweight, privacy-first WordPress chat widget plugin. Connect any chat URL — n8n workflows, AI bots, or third-party providers — to your site in minutes.
+url: "https://ackm04.github.io"
+baseurl: "/chatassist"
+
+theme: cayman
+
+author:
+  name: Ajay
+  email: ackm04@gmail.com
+  github: ackm04
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

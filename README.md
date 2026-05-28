@@ -67,7 +67,7 @@ Even **$3** for a coffee buys an hour of focused bug-squashing. 🙏
 
 ### From this repo
 ```bash
-git clone https://github.com/erp-linker/erplinker-chatassist.git intelligizedigital-chatassist
+git clone https://github.com/ackm04/chatassist.git intelligizedigital-chatassist
 zip -r intelligizedigital-chatassist.zip intelligizedigital-chatassist -x "*.git*" "*.DS_Store" "*/screenshots/*"
 # Upload the zip in WP Admin → Plugins → Add New → Upload Plugin
 ```
@@ -101,8 +101,6 @@ All admin endpoints are nonce-protected and capability-gated (`manage_ackm_chata
 
 ---
 
----
-
 ## 📜 Changelog
 
 See [readme.txt](readme.txt) for the full changelog.
@@ -120,4 +118,4 @@ See [LICENSE](LICENSE) for full text or visit https://www.gnu.org/licenses/gpl-2
 
 If you ship this on a client site or use it in production, drop me a line at **ackm04@gmail.com** — I love seeing how people use it.
 
-**[☕ Buy me a coffee](https://www.buymeacoffee.com/ackm04)** • **[❤️ Sponsor on GitHub](https://github.com/sponsors/ackm04)** • **[🌟 Star this repo](https://github.com/erp-linker/erplinker-chatassist)**
+**[☕ Buy me a coffee](https://www.buymeacoffee.com/ackm04)** • **[❤️ Sponsor on GitHub](https://github.com/sponsors/ackm04)** • **[🌟 Star this repo](https://github.com/ackm04/chatassist)**
