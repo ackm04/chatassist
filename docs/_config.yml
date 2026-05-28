@@ -3,7 +3,7 @@ description: A lightweight, privacy-first WordPress chat widget plugin. Connect 
 url: "https://ackm04.github.io"
 baseurl: "/chatassist"
 
-theme: cayman
+theme: jekyll-theme-cayman
 
 author:
   name: Ajay
