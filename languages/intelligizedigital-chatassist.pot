@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Intelligize ChatAssist 1.0.0\n"
+"Project-Id-Version: ChatAssist 1.0.0\n"
 "Report-Msgid-Bugs-To: https://intelligizedigital.com/support\n"
 "POT-Creation-Date: 2025-01-01 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -13,32 +13,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: WP-CLI\n"
-"X-Domain: intelligizedigital-chatassist\n"
+"X-Domain: ackm-chatassist\n"
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Settings"
 msgstr ""
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Security check failed."
 msgstr ""
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Invalid event type."
 msgstr ""
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Unknown event type."
 msgstr ""
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Event tracked."
 msgstr ""
 
-#: intelligizedigital-chatassist.php
+#: ackm-chatassist.php
 msgid "Icon"
 msgstr ""
 
-#: public/partials/intelligizedigital-chatassist-public-display.php
+#: public/partials/ackm-chatassist-public-display.php
 msgid "Chat"
 msgstr ""

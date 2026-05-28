@@ -1,8 +1,8 @@
 <?php
 /**
- * Analytics tracking for Intelligize ChatAssist
+ * Analytics tracking for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 1.0.0
  */
 
@@ -12,9 +12,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Intelligize ChatAssist Analytics Class
+ * ChatAssist Analytics Class
  */
-class IntelligizeDigital_ChatAssist_Analytics {
+class Ackm_ChatAssist_Analytics {
 
     /**
      * Track widget open event
@@ -50,11 +50,11 @@ class IntelligizeDigital_ChatAssist_Analytics {
      * @param string $event_type Event type.
      */
     private static function track_event($event_type) {
-        if (get_option('intelligizedigital_chatassist_analytics_enabled', 'yes') !== 'yes') {
+        if (get_option('ackm_chatassist_analytics_enabled', 'yes') !== 'yes') {
             return;
         }
 
-        $analytics = get_option('intelligizedigital_chatassist_analytics', array());
+        $analytics = get_option('ackm_chatassist_analytics', array());
         
         $today = gmdate('Y-m-d');
         
@@ -76,7 +76,7 @@ class IntelligizeDigital_ChatAssist_Analytics {
 
         $analytics = array_slice($analytics, -90, 90, true);
 
-        update_option('intelligizedigital_chatassist_analytics', $analytics);
+        update_option('ackm_chatassist_analytics', $analytics);
     }
 
     /**
@@ -86,7 +86,7 @@ class IntelligizeDigital_ChatAssist_Analytics {
         if (!in_array($event_type, array('open', 'conversion'), true)) {
             return;
         }
-        $stats = get_option('intelligizedigital_chatassist_ab_variant_stats', array());
+        $stats = get_option('ackm_chatassist_ab_variant_stats', array());
         $today = gmdate('Y-m-d');
         if (!isset($stats[$today])) {
             $stats[$today] = array();
@@ -96,14 +96,14 @@ class IntelligizeDigital_ChatAssist_Analytics {
         }
         $stats[$today][$variant_id][$event_type]++;
         $stats = array_slice($stats, -90, 90, true);
-        update_option('intelligizedigital_chatassist_ab_variant_stats', $stats);
+        update_option('ackm_chatassist_ab_variant_stats', $stats);
     }
 
     /**
      * Get A/B variant stats for admin
      */
     public static function get_variant_stats($days = 14) {
-        $stats = get_option('intelligizedigital_chatassist_ab_variant_stats', array());
+        $stats = get_option('ackm_chatassist_ab_variant_stats', array());
         $stats = is_array($stats) ? $stats : array();
         $recent = array_slice($stats, -$days, $days, true);
         $totals = array();
@@ -127,7 +127,7 @@ class IntelligizeDigital_ChatAssist_Analytics {
      * @return array Analytics data.
      */
     public static function get_data($days = 30) {
-        $analytics = get_option('intelligizedigital_chatassist_analytics', array());
+        $analytics = get_option('ackm_chatassist_analytics', array());
         
         if (empty($analytics)) {
             return array();
@@ -243,26 +243,26 @@ class IntelligizeDigital_ChatAssist_Analytics {
      * Track conversion (purchase, signup)
      */
     public static function track_conversion($goal_id = '') {
-        if (get_option('intelligizedigital_chatassist_conversion_tracking', 'no') !== 'yes') {
+        if (get_option('ackm_chatassist_conversion_tracking', 'no') !== 'yes') {
             return;
         }
-        $analytics = get_option('intelligizedigital_chatassist_analytics', array());
+        $analytics = get_option('ackm_chatassist_analytics', array());
         $today = gmdate('Y-m-d');
         if (!isset($analytics[$today]['conversions'])) {
             $analytics[$today]['conversions'] = 0;
         }
         $analytics[$today]['conversions']++;
-        update_option('intelligizedigital_chatassist_analytics', $analytics);
+        update_option('ackm_chatassist_analytics', $analytics);
     }
 
     /**
      * Track heatmap data (scroll depth, clicks)
      */
     public static function track_heatmap($type, $value) {
-        if (get_option('intelligizedigital_chatassist_heatmap_enabled', 'no') !== 'yes') {
+        if (get_option('ackm_chatassist_heatmap_enabled', 'no') !== 'yes') {
             return;
         }
-        $heatmap = get_option('intelligizedigital_chatassist_heatmap_data', array());
+        $heatmap = get_option('ackm_chatassist_heatmap_data', array());
         $today = gmdate('Y-m-d');
         if (!isset($heatmap[$today])) {
             $heatmap[$today] = array('scroll' => array(), 'clicks' => array());
@@ -274,7 +274,7 @@ class IntelligizeDigital_ChatAssist_Analytics {
             $heatmap[$today]['clicks'][] = $value;
         }
         $heatmap = array_slice($heatmap, -30, 30, true);
-        update_option('intelligizedigital_chatassist_heatmap_data', $heatmap);
+        update_option('ackm_chatassist_heatmap_data', $heatmap);
     }
 
     /**
@@ -287,7 +287,7 @@ class IntelligizeDigital_ChatAssist_Analytics {
         <!DOCTYPE html><html><head><meta charset="utf-8"><title>ChatAssist Analytics</title>
         <style>body{font-family:sans-serif;padding:20px;} table{border-collapse:collapse;width:100%;} th,td{border:1px solid #ddd;padding:8px;} th{background:#f5f5f5;}</style>
         </head><body onload="window.print()">
-        <h1>Intelligize ChatAssist Analytics Report</h1>
+        <h1>ChatAssist Analytics Report</h1>
         <p>Generated: <?php echo esc_html(gmdate('Y-m-d H:i')); ?></p>
         <h2>Summary (Last 30 Days)</h2>
         <p>Widget Opens: <?php echo esc_html($data['total']['widget_opened'] ?? 0); ?></p>

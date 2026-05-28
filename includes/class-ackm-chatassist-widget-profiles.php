@@ -1,8 +1,8 @@
 <?php
 /**
- * Multiple Widget Profiles for Intelligize ChatAssist
+ * Multiple Widget Profiles for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 4.0.0
  */
 
@@ -13,21 +13,21 @@ if (!defined('ABSPATH')) {
 /**
  * Widget profiles - different chat URLs per page/post
  */
-class IntelligizeDigital_ChatAssist_Widget_Profiles {
+class Ackm_ChatAssist_Widget_Profiles {
 
     public static function init() {
-        add_filter('intelligizedigital_chatassist_chat_url', array(__CLASS__, 'get_profile_url'), 5, 1);
-        add_filter('intelligizedigital_chatassist_widget_position', array(__CLASS__, 'get_profile_position'), 5, 1);
-        add_filter('intelligizedigital_chatassist_widget_title', array(__CLASS__, 'get_profile_title'), 5, 1);
-        add_filter('intelligizedigital_chatassist_widget_color', array(__CLASS__, 'get_profile_color'), 5, 1);
+        add_filter('ackm_chatassist_chat_url', array(__CLASS__, 'get_profile_url'), 5, 1);
+        add_filter('ackm_chatassist_widget_position', array(__CLASS__, 'get_profile_position'), 5, 1);
+        add_filter('ackm_chatassist_widget_title', array(__CLASS__, 'get_profile_title'), 5, 1);
+        add_filter('ackm_chatassist_widget_color', array(__CLASS__, 'get_profile_color'), 5, 1);
     }
 
     public static function is_enabled() {
-        return get_option('intelligizedigital_chatassist_multi_widgets', 'no') === 'yes';
+        return get_option('ackm_chatassist_multi_widgets', 'no') === 'yes';
     }
 
     public static function get_profiles() {
-        $profiles = get_option('intelligizedigital_chatassist_widget_profiles', array());
+        $profiles = get_option('ackm_chatassist_widget_profiles', array());
         return is_array($profiles) ? $profiles : array();
     }
 

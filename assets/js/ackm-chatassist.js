@@ -1,5 +1,5 @@
 /**
- * Intelligize ChatAssist Front-end JavaScript - Extended Features
+ * ChatAssist Front-end JavaScript - Extended Features
  */
 (function($) {
     'use strict';
@@ -14,16 +14,16 @@
     let unreadCount = 0;
 
     function getData() {
-        return typeof intelligizedigitalChatAssistData !== 'undefined' ? intelligizedigitalChatAssistData : {};
+        return typeof ackmChatAssistData !== 'undefined' ? ackmChatAssistData : {};
     }
 
     function initChatWidget() {
-        $container = $('#intelligizedigital-chatassist-container');
-        $button = $('#intelligizedigital-chatassist-button');
-        $popup = $('#intelligizedigital-chatassist-popup');
-        $closeBtn = $('#intelligizedigital-chatassist-close');
-        $iframe = $('#intelligizedigital-chatassist-iframe');
-        $loading = $('#intelligizedigital-chatassist-loading');
+        $container = $('#ackm-chatassist-container');
+        $button = $('#ackm-chatassist-button');
+        $popup = $('#ackm-chatassist-popup');
+        $closeBtn = $('#ackm-chatassist-close');
+        $iframe = $('#ackm-chatassist-iframe');
+        $loading = $('#ackm-chatassist-loading');
 
         if (!$container.length) return;
 
@@ -31,12 +31,12 @@
 
         // Apply theme
         if (data.theme === 'dark') {
-            $container.addClass('intelligizedigital-chatassist-theme-dark');
+            $container.addClass('ackm-chatassist-theme-dark');
         }
 
         // Initially hide button if delay/scroll/exit-intent
         if (data.delaySeconds > 0 || data.scrollDepth > 0 || data.exitIntent) {
-            $container.addClass('intelligizedigital-chatassist-delayed');
+            $container.addClass('ackm-chatassist-delayed');
             $button.hide();
         }
 
@@ -84,26 +84,26 @@
 
         // GDPR consent
         if (data.gdprConsent) {
-            $('#intelligizedigital-chatassist-consent-accept').on('click', function() {
-                document.cookie = 'intelligizedigital_chatassist_consent=accepted; path=/; max-age=31536000';
-                $('#intelligizedigital-chatassist-consent-banner').fadeOut(300);
+            $('#ackm-chatassist-consent-accept').on('click', function() {
+                document.cookie = 'ackm_chatassist_consent=accepted; path=/; max-age=31536000';
+                $('#ackm-chatassist-consent-banner').fadeOut(300);
                 location.reload();
             });
-            $('#intelligizedigital-chatassist-consent-decline').on('click', function() {
-                document.cookie = 'intelligizedigital_chatassist_consent=declined; path=/; max-age=86400';
-                $('#intelligizedigital-chatassist-consent-banner').fadeOut(300);
+            $('#ackm-chatassist-consent-decline').on('click', function() {
+                document.cookie = 'ackm_chatassist_consent=declined; path=/; max-age=86400';
+                $('#ackm-chatassist-consent-banner').fadeOut(300);
             });
         }
 
         $button.on('click', function(e) {
-            if (data.preChatForm && $('#intelligizedigital-chatassist-prechat-wrapper').length && !$('#intelligizedigital-chatassist-prechat').hasClass('submitted')) {
+            if (data.preChatForm && $('#ackm-chatassist-prechat-wrapper').length && !$('#ackm-chatassist-prechat').hasClass('submitted')) {
                 e.preventDefault();
                 isWidgetOpen = true;
                 $popup.css('display', 'flex');
-                $container.addClass('intelligizedigital-chatassist-open');
-                $popup.addClass('intelligizedigital-chatassist-popup-open');
-                $popup.find('.intelligizedigital-chatassist-frame-container').addClass('intelligizedigital-chatassist-hidden').hide();
-                $popup.find('.intelligizedigital-chatassist-prechat-wrapper').removeClass('intelligizedigital-chatassist-hidden').show();
+                $container.addClass('ackm-chatassist-open');
+                $popup.addClass('ackm-chatassist-popup-open');
+                $popup.find('.ackm-chatassist-frame-container').addClass('ackm-chatassist-hidden').hide();
+                $popup.find('.ackm-chatassist-prechat-wrapper').removeClass('ackm-chatassist-hidden').show();
                 return;
             }
             toggleChatWidget();
@@ -115,13 +115,13 @@
             closeChatWidget();
         });
 
-        $(document).on('click', '#intelligizedigital-chatassist-prechat-submit', function() {
-            const $form = $('#intelligizedigital-chatassist-prechat-form');
+        $(document).on('click', '#ackm-chatassist-prechat-submit', function() {
+            const $form = $('#ackm-chatassist-prechat-form');
             if ($form.length && $form[0].checkValidity()) {
                 const formData = { name: $form.find('[name="name"]').val() || '', email: $form.find('[name="email"]').val() || '', phone: $form.find('[name="phone"]').val() || '' };
-                $('#intelligizedigital-chatassist-prechat').addClass('submitted');
-                $popup.find('.intelligizedigital-chatassist-prechat-wrapper').addClass('intelligizedigital-chatassist-hidden').hide();
-                $popup.find('.intelligizedigital-chatassist-frame-container').removeClass('intelligizedigital-chatassist-hidden').show();
+                $('#ackm-chatassist-prechat').addClass('submitted');
+                $popup.find('.ackm-chatassist-prechat-wrapper').addClass('ackm-chatassist-hidden').hide();
+                $popup.find('.ackm-chatassist-frame-container').removeClass('ackm-chatassist-hidden').show();
                 hasLoaded = false;
                 let chatUrl = $iframe.attr('data-src');
                 if (chatUrl && data.preChatToUrl && (formData.name || formData.email || formData.phone)) {
@@ -138,10 +138,10 @@
                 }
                 if (data.analyticsEnabled) {
                     trackEvent('widget_opened');
-                    try { document.cookie = 'intelligizedigital_chatassist_opened=1;path=/;max-age=86400;samesite=lax'; } catch (e) {}
+                    try { document.cookie = 'ackm_chatassist_opened=1;path=/;max-age=86400;samesite=lax'; } catch (e) {}
                 }
                 if (data.ajaxUrl && data.nonce) {
-                    $.post(data.ajaxUrl, { action: 'intelligizedigital_chatassist_track', event_type: 'lead_captured', nonce: data.nonce, name: formData.name, email: formData.email, phone: formData.phone });
+                    $.post(data.ajaxUrl, { action: 'ackm_chatassist_track', event_type: 'lead_captured', nonce: data.nonce, name: formData.name, email: formData.email, phone: formData.phone });
                 }
             }
         });
@@ -169,11 +169,11 @@
 
         window.addEventListener('message', function(e) {
             if (!e.data || !e.data.type) return;
-            if (e.data.type === 'intelligizedigital_chatassist_unread' && typeof e.data.count === 'number') {
+            if (e.data.type === 'ackm_chatassist_unread' && typeof e.data.count === 'number') {
                 unreadCount = e.data.count;
                 if (data.unreadBadge) updateUnreadBadge();
             }
-            if (e.data.type === 'intelligizedigital_chatassist_new_message' && data.soundEnabled) {
+            if (e.data.type === 'ackm_chatassist_new_message' && data.soundEnabled) {
                 try {
                     const ctx = new (window.AudioContext || window.webkitAudioContext)();
                     const osc = ctx.createOscillator();
@@ -185,11 +185,11 @@
                     osc.start();
                     setTimeout(function() { osc.stop(); }, 100);
                 } catch (err) {}
-                $(document).trigger('intelligizedigital_chatassist_new_message');
+                $(document).trigger('ackm_chatassist_new_message');
             }
-            if (e.data.type === 'intelligizedigital_chatassist_message_sent') {
+            if (e.data.type === 'ackm_chatassist_message_sent') {
                 if (data.analyticsEnabled) trackEvent('message_sent');
-                $(document).trigger('intelligizedigital_chatassist_message_sent');
+                $(document).trigger('ackm_chatassist_message_sent');
             }
         });
 
@@ -202,13 +202,13 @@
                 if (pct > lastScroll && [25, 50, 75, 100].indexOf(pct) >= 0) {
                     lastScroll = pct;
                     if (data.ajaxUrl && data.nonce) {
-                        $.post(data.ajaxUrl, { action: 'intelligizedigital_chatassist_track', event_type: 'heatmap', nonce: data.nonce, heatmap_type: 'scroll', heatmap_value: pct });
+                        $.post(data.ajaxUrl, { action: 'ackm_chatassist_track', event_type: 'heatmap', nonce: data.nonce, heatmap_type: 'scroll', heatmap_value: pct });
                     }
                 }
             });
             var clickThrottle = 0;
             $(document).on('click', function(e) {
-                if ($(e.target).closest('#intelligizedigital-chatassist-container').length) return;
+                if ($(e.target).closest('#ackm-chatassist-container').length) return;
                 if (Date.now() - clickThrottle < 500) return;
                 clickThrottle = Date.now();
                 var x = Math.round((e.clientX / window.innerWidth) * 100);
@@ -216,65 +216,65 @@
                 var sel = (e.target.tagName + (e.target.id ? '#' + e.target.id : '') + (e.target.className && typeof e.target.className === 'string' ? '.' + e.target.className.split(' ')[0] : '')).substring(0, 50);
                 var val = x + ',' + y + '|' + sel;
                 if (data.ajaxUrl && data.nonce) {
-                    $.post(data.ajaxUrl, { action: 'intelligizedigital_chatassist_track', event_type: 'heatmap', nonce: data.nonce, heatmap_type: 'click', heatmap_value: val });
+                    $.post(data.ajaxUrl, { action: 'ackm_chatassist_track', event_type: 'heatmap', nonce: data.nonce, heatmap_type: 'click', heatmap_value: val });
                 }
             });
         }
 
         if (data.layout === 'collapsible') {
-            $container.addClass('intelligizedigital-chatassist-collapsible');
+            $container.addClass('ackm-chatassist-collapsible');
         }
 
-        if (data.abVariant && data.abVariant !== 'control' && !document.cookie.match(/intelligizedigital_chatassist_variant=/)) {
-            document.cookie = 'intelligizedigital_chatassist_variant=' + data.abVariant + ';path=/;max-age=2592000';
+        if (data.abVariant && data.abVariant !== 'control' && !document.cookie.match(/ackm_chatassist_variant=/)) {
+            document.cookie = 'ackm_chatassist_variant=' + data.abVariant + ';path=/;max-age=2592000';
         }
 
         if (data.typingIndicator) {
-            $popup.find('.intelligizedigital-chatassist-frame-container').prepend('<div class="intelligizedigital-chatassist-typing-indicator intelligizedigital-chatassist-hidden"><span></span><span></span><span></span></div>');
+            $popup.find('.ackm-chatassist-frame-container').prepend('<div class="ackm-chatassist-typing-indicator ackm-chatassist-hidden"><span></span><span></span><span></span></div>');
         }
 
         if (window.innerWidth < 480) {
-            $container.addClass('intelligizedigital-chatassist-mobile');
+            $container.addClass('ackm-chatassist-mobile');
         }
         $(window).on('resize', function() {
-            $container.toggleClass('intelligizedigital-chatassist-mobile', window.innerWidth < 480);
+            $container.toggleClass('ackm-chatassist-mobile', window.innerWidth < 480);
         });
 
         // Trigger open from external (WooCommerce, CF7)
-        $(document).on('intelligizedigital_chatassist_open', function() {
+        $(document).on('ackm_chatassist_open', function() {
             showButton();
             setTimeout(function() {
-                if (!$popup.hasClass('intelligizedigital-chatassist-popup-open')) {
+                if (!$popup.hasClass('ackm-chatassist-popup-open')) {
                     openChatWidget();
                 }
             }, 300);
         });
 
-        // Conversion tracking - fires when user triggers jQuery(document).trigger('intelligizedigital_chatassist_conversion')
-        $(document).on('intelligizedigital_chatassist_conversion', function() {
+        // Conversion tracking - fires when user triggers jQuery(document).trigger('ackm_chatassist_conversion')
+        $(document).on('ackm_chatassist_conversion', function() {
             if (getData().analyticsEnabled) trackEvent('conversion');
         });
 
         // Push notification subscription (when chat opens)
-        $(document).on('intelligizedigital_chatassist_open', function() {
-            if (window.intelligizedigitalChatAssistPush && window.intelligizedigitalChatAssistPush.reg && !localStorage.getItem('intelligizedigital_chatassist_push_asked')) {
+        $(document).on('ackm_chatassist_open', function() {
+            if (window.ackmChatAssistPush && window.ackmChatAssistPush.reg && !localStorage.getItem('ackm_chatassist_push_asked')) {
                 setTimeout(function() { trySubscribePush(); }, 2000);
             }
         });
     }
 
     function trySubscribePush() {
-        if (!window.intelligizedigitalChatAssistPush || !window.intelligizedigitalChatAssistPush.vapid) return;
-        var p = window.intelligizedigitalChatAssistPush;
+        if (!window.ackmChatAssistPush || !window.ackmChatAssistPush.vapid) return;
+        var p = window.ackmChatAssistPush;
         if (!('PushManager' in window) || !('Notification' in window)) return;
         if (Notification.permission === 'granted') return;
         if (Notification.permission === 'denied') return;
-        localStorage.setItem('intelligizedigital_chatassist_push_asked', '1');
+        localStorage.setItem('ackm_chatassist_push_asked', '1');
         Notification.requestPermission().then(function(perm) {
             if (perm !== 'granted') return;
             return p.reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(p.vapid) });
         }).then(function(sub) {
-            if (sub) $.post(p.ajaxUrl, { action: 'intelligizedigital_chatassist_push_subscribe', subscription: JSON.stringify(sub.toJSON()), nonce: p.nonce });
+            if (sub) $.post(p.ajaxUrl, { action: 'ackm_chatassist_push_subscribe', subscription: JSON.stringify(sub.toJSON()), nonce: p.nonce });
         }).catch(function() {});
     }
     function urlBase64ToUint8Array(base64String) {
@@ -290,12 +290,12 @@
         if (!$button) return;
         $button.fadeIn(300);
         widgetVisible = true;
-        $container.removeClass('intelligizedigital-chatassist-delayed');
+        $container.removeClass('ackm-chatassist-delayed');
     }
 
     function showProactiveMessage(msg) {
         if (!$container.length) return;
-        const $bubble = $('<div class="intelligizedigital-chatassist-proactive-bubble">' + msg + '</div>');
+        const $bubble = $('<div class="ackm-chatassist-proactive-bubble">' + msg + '</div>');
         $container.append($bubble);
         setTimeout(function() {
             $bubble.addClass('visible');
@@ -313,13 +313,13 @@
 
     function openChatWidget() {
         $popup.css('display', 'flex');
-        $container.addClass('intelligizedigital-chatassist-open');
+        $container.addClass('ackm-chatassist-open');
         isWidgetOpen = true;
 
         const data = getData();
         if (data.analyticsEnabled) {
             trackEvent('widget_opened');
-            try { document.cookie = 'intelligizedigital_chatassist_opened=1;path=/;max-age=86400;samesite=lax'; } catch (e) {}
+            try { document.cookie = 'ackm_chatassist_opened=1;path=/;max-age=86400;samesite=lax'; } catch (e) {}
         }
 
         if (data.unreadBadge) {
@@ -338,13 +338,13 @@
         }
 
         setTimeout(function() {
-            $popup.addClass('intelligizedigital-chatassist-popup-open');
+            $popup.addClass('ackm-chatassist-popup-open');
         }, 10);
     }
 
     function closeChatWidget() {
-        $popup.removeClass('intelligizedigital-chatassist-popup-open');
-        $container.removeClass('intelligizedigital-chatassist-open');
+        $popup.removeClass('ackm-chatassist-popup-open');
+        $container.removeClass('ackm-chatassist-open');
 
         const data = getData();
         if (data.analyticsEnabled) trackEvent('widget_closed');
@@ -359,7 +359,7 @@
         const data = getData();
         if (!data.ajaxUrl || !data.nonce) return;
         const postData = {
-            action: 'intelligizedigital_chatassist_track',
+            action: 'ackm_chatassist_track',
             event_type: eventType,
             nonce: data.nonce
         };
@@ -378,11 +378,11 @@
     }
 
     function updateUnreadBadge() {
-        const $badge = $('.intelligizedigital-chatassist-unread-badge');
+        const $badge = $('.ackm-chatassist-unread-badge');
         if (unreadCount > 0) {
-            $badge.text(unreadCount > 99 ? '99+' : unreadCount).removeClass('intelligizedigital-chatassist-hidden').show();
+            $badge.text(unreadCount > 99 ? '99+' : unreadCount).removeClass('ackm-chatassist-hidden').show();
         } else {
-            $badge.addClass('intelligizedigital-chatassist-hidden').hide();
+            $badge.addClass('ackm-chatassist-hidden').hide();
         }
     }
 

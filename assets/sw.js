@@ -1,4 +1,4 @@
-/* Intelligize ChatAssist - Service Worker */
+/* ChatAssist - Service Worker */
 self.addEventListener('install', function(e) {
   e.waitUntil(self.skipWaiting());
 });

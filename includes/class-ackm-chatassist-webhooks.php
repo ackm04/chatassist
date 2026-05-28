@@ -1,8 +1,8 @@
 <?php
 /**
- * Webhooks & Integrations for Intelligize ChatAssist
+ * Webhooks & Integrations for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 3.0.0
  */
 
@@ -13,17 +13,17 @@ if (!defined('ABSPATH')) {
 /**
  * Outgoing webhooks for Zapier, Slack, Discord, CRM
  */
-class IntelligizeDigital_ChatAssist_Webhooks {
+class Ackm_ChatAssist_Webhooks {
 
     public static function init() {
-        add_action('intelligizedigital_chatassist_widget_opened', array(__CLASS__, 'on_widget_opened'));
-        add_action('intelligizedigital_chatassist_widget_closed', array(__CLASS__, 'on_widget_closed'));
-        add_action('intelligizedigital_chatassist_message_sent', array(__CLASS__, 'on_message_sent'));
-        add_action('intelligizedigital_chatassist_lead_captured', array(__CLASS__, 'on_lead_captured'));
+        add_action('ackm_chatassist_widget_opened', array(__CLASS__, 'on_widget_opened'));
+        add_action('ackm_chatassist_widget_closed', array(__CLASS__, 'on_widget_closed'));
+        add_action('ackm_chatassist_message_sent', array(__CLASS__, 'on_message_sent'));
+        add_action('ackm_chatassist_lead_captured', array(__CLASS__, 'on_lead_captured'));
     }
 
     private static function fire_webhook($event, $payload) {
-        $url = get_option('intelligizedigital_chatassist_webhook_url', '');
+        $url = get_option('ackm_chatassist_webhook_url', '');
         if (empty($url)) {
             return;
         }
@@ -41,7 +41,7 @@ class IntelligizeDigital_ChatAssist_Webhooks {
     }
 
     private static function notify_slack($message, $payload = array()) {
-        $url = get_option('intelligizedigital_chatassist_slack_webhook', '');
+        $url = get_option('ackm_chatassist_slack_webhook', '');
         if (empty($url)) {
             return;
         }
@@ -64,7 +64,7 @@ class IntelligizeDigital_ChatAssist_Webhooks {
     }
 
     private static function notify_discord($message, $payload = array()) {
-        $url = get_option('intelligizedigital_chatassist_discord_webhook', '');
+        $url = get_option('ackm_chatassist_discord_webhook', '');
         if (empty($url)) {
             return;
         }
@@ -86,7 +86,7 @@ class IntelligizeDigital_ChatAssist_Webhooks {
     public static function on_widget_opened() {
         $payload = array('page' => isset($_SERVER['HTTP_REFERER']) ? esc_url_raw(wp_unslash($_SERVER['HTTP_REFERER'])) : '');
         self::fire_webhook('widget_opened', $payload);
-        if (get_option('intelligizedigital_chatassist_slack_notify_opens', 'no') === 'yes') {
+        if (get_option('ackm_chatassist_slack_notify_opens', 'no') === 'yes') {
             self::notify_slack('Chat widget opened', $payload);
         }
     }
@@ -98,10 +98,10 @@ class IntelligizeDigital_ChatAssist_Webhooks {
     public static function on_message_sent() {
         $payload = array();
         self::fire_webhook('message_sent', $payload);
-        if (get_option('intelligizedigital_chatassist_slack_notify_messages', 'no') === 'yes') {
+        if (get_option('ackm_chatassist_slack_notify_messages', 'no') === 'yes') {
             self::notify_slack('New chat message sent', $payload);
         }
-        if (get_option('intelligizedigital_chatassist_discord_notify_messages', 'no') === 'yes') {
+        if (get_option('ackm_chatassist_discord_notify_messages', 'no') === 'yes') {
             self::notify_discord('New chat message sent', $payload);
         }
     }
@@ -114,20 +114,20 @@ class IntelligizeDigital_ChatAssist_Webhooks {
         );
         self::fire_webhook('lead_captured', $payload);
         self::send_to_crm($payload);
-        if (get_option('intelligizedigital_chatassist_slack_notify_leads', 'no') === 'yes') {
+        if (get_option('ackm_chatassist_slack_notify_leads', 'no') === 'yes') {
             self::notify_slack('New lead captured: ' . $payload['email'], $payload);
         }
-        if (get_option('intelligizedigital_chatassist_discord_notify_leads', 'no') === 'yes') {
+        if (get_option('ackm_chatassist_discord_notify_leads', 'no') === 'yes') {
             self::notify_discord('New lead captured', $payload);
         }
     }
 
     private static function send_to_crm($lead) {
-        $crm_url = get_option('intelligizedigital_chatassist_crm_webhook', '');
+        $crm_url = get_option('ackm_chatassist_crm_webhook', '');
         if (empty($crm_url)) {
             return;
         }
-        $format = get_option('intelligizedigital_chatassist_crm_format', 'hubspot');
+        $format = get_option('ackm_chatassist_crm_format', 'hubspot');
         $body = $format === 'salesforce' ? array(
             'FirstName' => $lead['name'],
             'Email' => $lead['email'],

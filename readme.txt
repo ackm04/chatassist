@@ -1,10 +1,10 @@
-=== Intelligize Digital ChatAssist ===
-Contributors: intelligize
-Donate link: https://intelligizedigital.com/
+=== ChatAssist by Ajay ===
+Contributors: ackm04
+Donate link: https://www.buymeacoffee.com/ackm04
 Tags: chat, widget, support, customer service, live chat
 Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 4.0.3
+Stable tag: 4.0.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ A powerful chat widget for WordPress. Connect n8n workflows or any chat service 
 
 == Description ==
 
-Intelligize Digital ChatAssist is a flexible and feature-rich chat widget plugin that allows you to integrate any chat service into your WordPress website. Whether you're using n8n workflows, custom chat solutions, AI-powered chatbots, or third-party chat services, Intelligize Digital ChatAssist provides a seamless integration experience.
+ChatAssist by Ajay is a flexible and feature-rich chat widget plugin that allows you to integrate any chat service into your WordPress website. Whether you're using n8n workflows, custom chat solutions, AI-powered chatbots, or third-party chat services, ChatAssist by Ajay provides a seamless integration experience.
 
 **Key Features:**
 
@@ -71,9 +71,9 @@ This plugin is designed to be simple yet powerful, giving you complete control o
 
 == Installation ==
 
-1. Upload the `intelligizedigital-chatassist` folder to the `/wp-content/plugins/` directory
+1. Upload the `ackm-chatassist` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Intelligize Digital ChatAssist in the main admin menu to configure
+3. Go to ChatAssist by Ajay in the main admin menu to configure
 
 == Configuration ==
 
@@ -155,7 +155,7 @@ Yes, this plugin works with any chat workflow that is publicly accessible via a 
 
 = Does this plugin work with n8n? =
 
-Yes! Intelligize Digital ChatAssist works perfectly with n8n workflows. Simply create a chat workflow in n8n, make it publicly accessible, and use the webhook URL in Intelligize Digital ChatAssist settings.
+Yes! ChatAssist by Ajay works perfectly with n8n workflows. Simply create a chat workflow in n8n, make it publicly accessible, and use the webhook URL in ChatAssist by Ajay settings.
 
 == Screenshots ==
 
@@ -163,6 +163,14 @@ Yes! Intelligize Digital ChatAssist works perfectly with n8n workflows. Simply c
 2. Admin settings page
 
 == Changelog ==
+
+= 4.0.4 =
+* Rebranded to "ChatAssist by Ajay"; updated Plugin Name, Author, and admin menu label
+* Internal prefix renamed from `intelligizedigital_chatassist_*` to `ackm_chatassist_*` across PHP classes, functions, constants, CSS classes, DOM IDs, hook/filter/nonce/AJAX names, and capabilities
+* Added one-time automatic migration on `plugins_loaded` that copies every legacy `intelligizedigital_chatassist_*` option to the new `ackm_chatassist_*` keys and migrates the `manage_*` capability — existing settings, analytics, A/B variants, widget profiles, push subscriptions, etc. carry over with zero data loss
+* `uninstall.php` now cleans up both old and new option/usermeta keys and removes the migration flag
+* Support links in admin footer now point to the GitHub repo and issue tracker
+* Text Domain stays `intelligizedigital-chatassist` (matches the WordPress.org plugin slug, which cannot be renamed)
 
 = 4.0.3 =
 * Update bundled Chart.js library from v4.4.1 to v4.5.0 (latest stable)
@@ -181,7 +189,7 @@ Yes! Intelligize Digital ChatAssist works perfectly with n8n workflows. Simply c
 * Fix admin menu position to 81 (previously too high at 25)
 * Fix widget HTML output to use wp_kses_post()
 * Fix GDPR consent script to use dedicated script handle instead of attaching to jquery
-* Rename all plugin constants to match slug prefix (INTELLIGIZEDIGITAL_CHATASSIST_)
+* Rename all plugin constants to match slug prefix (ACKM_CHATASSIST_)
 * Update Tested up to: 7.0
 
 = 4.0.1 =

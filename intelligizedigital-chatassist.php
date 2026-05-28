@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Intelligize Digital ChatAssist
+ * Plugin Name: ChatAssist by Ajay
  * Plugin URI: https://wordpress.org/plugins/intelligizedigital-chatassist/
- * Description: A powerful, lightweight chat widget solution for WordPress. Connect n8n workflows, custom chat services, or any chat service via webhook URL. Customize appearance, track engagement, and display smartly with advanced rules. Perfect for customer support, sales, and engagement.
- * Version: 4.0.3
- * Author: Intelligize Digital
- * Author URI: https://intelligizedigital.com/
+ * Description: A powerful, lightweight chat widget for WordPress. Connect n8n workflows, custom AI bots, or any chat service via webhook URL. Customize appearance, track engagement, target audiences with smart display rules. Perfect for customer support, sales, and engagement.
+ * Version: 4.0.4
+ * Author: Ajay
+ * Author URI: https://github.com/ackm04
  * Text Domain: intelligizedigital-chatassist
  * Domain Path: /languages
  * License: GPL-2.0+
@@ -13,7 +13,7 @@
  * Requires at least: 5.0
  * Requires PHP: 7.0
  * Tested up to: 7.0
- * Contributors: intelligize
+ * Contributors: ackm04
  */
 
 // If this file is called directly, abort.
@@ -22,93 +22,93 @@ if (!defined('WPINC')) {
 }
 
 // Define plugin constants
-define('INTELLIGIZEDIGITAL_CHATASSIST_VERSION', '4.0.3');
-define('INTELLIGIZEDIGITAL_CHATASSIST_PATH', plugin_dir_path(__FILE__));
-define('INTELLIGIZEDIGITAL_CHATASSIST_URL', plugin_dir_url(__FILE__));
+define('ACKM_CHATASSIST_VERSION', '4.0.4');
+define('ACKM_CHATASSIST_PATH', plugin_dir_path(__FILE__));
+define('ACKM_CHATASSIST_URL', plugin_dir_url(__FILE__));
 
 // Include required files
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-display-rules.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-analytics.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-extended-rules.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-rest-api.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-gdpr.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-webhooks.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-ab-testing.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-widget-profiles.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-integrations.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-goals.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-marketing.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-mobile.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'includes/class-intelligizedigital-chatassist-push.php';
-require_once INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'admin/class-intelligizedigital-chatassist-admin.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-display-rules.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-analytics.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-extended-rules.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-rest-api.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-gdpr.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-webhooks.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-ab-testing.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-widget-profiles.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-integrations.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-goals.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-marketing.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-mobile.php';
+require_once ACKM_CHATASSIST_PATH . 'includes/class-ackm-chatassist-push.php';
+require_once ACKM_CHATASSIST_PATH . 'admin/class-ackm-chatassist-admin.php';
 
 // Register activation and deactivation hooks
-register_activation_hook(__FILE__, 'intelligizedigital_chatassist_activate');
-register_deactivation_hook(__FILE__, 'intelligizedigital_chatassist_deactivate');
+register_activation_hook(__FILE__, 'ackm_chatassist_activate');
+register_deactivation_hook(__FILE__, 'ackm_chatassist_deactivate');
 
 /**
  * Plugin activation function
  */
-function intelligizedigital_chatassist_activate() {
+function ackm_chatassist_activate() {
     // Add default options if not set
     $defaults = array(
-        'intelligizedigital_chatassist_url' => '',
-        'intelligizedigital_chatassist_enabled' => 'yes',
-        'intelligizedigital_chatassist_position' => 'right',
-        'intelligizedigital_chatassist_title' => 'Chat Support',
-        'intelligizedigital_chatassist_color' => '#667eea',
-        'intelligizedigital_chatassist_icon' => '💬',
-        'intelligizedigital_chatassist_icon_type' => 'emoji',
-        'intelligizedigital_chatassist_svg_icon' => '',
-        'intelligizedigital_chatassist_zoom' => '100',
-        'intelligizedigital_chatassist_show_on' => 'all',
-        'intelligizedigital_chatassist_include_pages' => '',
-        'intelligizedigital_chatassist_exclude_pages' => '',
-        'intelligizedigital_chatassist_time_based' => 'no',
-        'intelligizedigital_chatassist_start_time' => '09:00',
-        'intelligizedigital_chatassist_end_time' => '17:00',
-        'intelligizedigital_chatassist_role_based' => 'no',
-        'intelligizedigital_chatassist_show_to_roles' => array('guest'),
-        'intelligizedigital_chatassist_analytics_enabled' => 'yes',
-        'intelligizedigital_chatassist_analytics' => array(),
-        'intelligizedigital_chatassist_delay_seconds' => '0',
-        'intelligizedigital_chatassist_scroll_depth' => '0',
-        'intelligizedigital_chatassist_exit_intent' => 'no',
-        'intelligizedigital_chatassist_proactive_message' => '',
-        'intelligizedigital_chatassist_proactive_delay' => '10',
-        'intelligizedigital_chatassist_pre_chat_form' => 'no',
-        'intelligizedigital_chatassist_pre_chat_fields' => 'name,email',
-        'intelligizedigital_chatassist_unread_badge' => 'no',
-        'intelligizedigital_chatassist_theme' => 'light',
-        'intelligizedigital_chatassist_gdpr_consent' => 'no',
-        'intelligizedigital_chatassist_gdpr_message' => '',
-        'intelligizedigital_chatassist_day_based' => 'no',
-        'intelligizedigital_chatassist_show_days' => array(),
-        'intelligizedigital_chatassist_device_based' => 'no',
-        'intelligizedigital_chatassist_show_on_devices' => array('desktop', 'mobile', 'tablet'),
-        'intelligizedigital_chatassist_geo_based' => 'no',
-        'intelligizedigital_chatassist_show_countries' => array(),
-        'intelligizedigital_chatassist_woo_pages' => array(),
-        'intelligizedigital_chatassist_webhook_url' => '',
-        'intelligizedigital_chatassist_slack_webhook' => '',
-        'intelligizedigital_chatassist_discord_webhook' => '',
-        'intelligizedigital_chatassist_slack_notify_opens' => 'no',
-        'intelligizedigital_chatassist_slack_notify_messages' => 'no',
-        'intelligizedigital_chatassist_slack_notify_leads' => 'no',
-        'intelligizedigital_chatassist_discord_notify_messages' => 'no',
-        'intelligizedigital_chatassist_discord_notify_leads' => 'no',
-        'intelligizedigital_chatassist_crm_webhook' => '',
-        'intelligizedigital_chatassist_crm_format' => 'hubspot',
-        'intelligizedigital_chatassist_ab_testing' => 'no',
-        'intelligizedigital_chatassist_ab_variants' => array(),
-        'intelligizedigital_chatassist_layout' => 'popup',
-        'intelligizedigital_chatassist_typing_indicator' => 'no',
-        'intelligizedigital_chatassist_sound_enabled' => 'no',
-        'intelligizedigital_chatassist_pre_chat_to_url' => 'yes',
-        'intelligizedigital_chatassist_conversion_tracking' => 'no',
-        'intelligizedigital_chatassist_heatmap_enabled' => 'no',
-        'intelligizedigital_chatassist_goals' => array(),
-        'intelligizedigital_chatassist_heatmap_data' => array(),
+        'ackm_chatassist_url' => '',
+        'ackm_chatassist_enabled' => 'yes',
+        'ackm_chatassist_position' => 'right',
+        'ackm_chatassist_title' => 'Chat Support',
+        'ackm_chatassist_color' => '#667eea',
+        'ackm_chatassist_icon' => '💬',
+        'ackm_chatassist_icon_type' => 'emoji',
+        'ackm_chatassist_svg_icon' => '',
+        'ackm_chatassist_zoom' => '100',
+        'ackm_chatassist_show_on' => 'all',
+        'ackm_chatassist_include_pages' => '',
+        'ackm_chatassist_exclude_pages' => '',
+        'ackm_chatassist_time_based' => 'no',
+        'ackm_chatassist_start_time' => '09:00',
+        'ackm_chatassist_end_time' => '17:00',
+        'ackm_chatassist_role_based' => 'no',
+        'ackm_chatassist_show_to_roles' => array('guest'),
+        'ackm_chatassist_analytics_enabled' => 'yes',
+        'ackm_chatassist_analytics' => array(),
+        'ackm_chatassist_delay_seconds' => '0',
+        'ackm_chatassist_scroll_depth' => '0',
+        'ackm_chatassist_exit_intent' => 'no',
+        'ackm_chatassist_proactive_message' => '',
+        'ackm_chatassist_proactive_delay' => '10',
+        'ackm_chatassist_pre_chat_form' => 'no',
+        'ackm_chatassist_pre_chat_fields' => 'name,email',
+        'ackm_chatassist_unread_badge' => 'no',
+        'ackm_chatassist_theme' => 'light',
+        'ackm_chatassist_gdpr_consent' => 'no',
+        'ackm_chatassist_gdpr_message' => '',
+        'ackm_chatassist_day_based' => 'no',
+        'ackm_chatassist_show_days' => array(),
+        'ackm_chatassist_device_based' => 'no',
+        'ackm_chatassist_show_on_devices' => array('desktop', 'mobile', 'tablet'),
+        'ackm_chatassist_geo_based' => 'no',
+        'ackm_chatassist_show_countries' => array(),
+        'ackm_chatassist_woo_pages' => array(),
+        'ackm_chatassist_webhook_url' => '',
+        'ackm_chatassist_slack_webhook' => '',
+        'ackm_chatassist_discord_webhook' => '',
+        'ackm_chatassist_slack_notify_opens' => 'no',
+        'ackm_chatassist_slack_notify_messages' => 'no',
+        'ackm_chatassist_slack_notify_leads' => 'no',
+        'ackm_chatassist_discord_notify_messages' => 'no',
+        'ackm_chatassist_discord_notify_leads' => 'no',
+        'ackm_chatassist_crm_webhook' => '',
+        'ackm_chatassist_crm_format' => 'hubspot',
+        'ackm_chatassist_ab_testing' => 'no',
+        'ackm_chatassist_ab_variants' => array(),
+        'ackm_chatassist_layout' => 'popup',
+        'ackm_chatassist_typing_indicator' => 'no',
+        'ackm_chatassist_sound_enabled' => 'no',
+        'ackm_chatassist_pre_chat_to_url' => 'yes',
+        'ackm_chatassist_conversion_tracking' => 'no',
+        'ackm_chatassist_heatmap_enabled' => 'no',
+        'ackm_chatassist_goals' => array(),
+        'ackm_chatassist_heatmap_data' => array(),
     );
     foreach ($defaults as $key => $val) {
         if (get_option($key, null) === null) {
@@ -119,151 +119,204 @@ function intelligizedigital_chatassist_activate() {
     // Set default capabilities
     $role = get_role('administrator');
     if ($role) {
-        $role->add_cap('manage_intelligizedigital_chatassist');
+        $role->add_cap('manage_ackm_chatassist');
     }
 }
 
 /**
  * Plugin deactivation function
  */
-function intelligizedigital_chatassist_deactivate() {
+function ackm_chatassist_deactivate() {
     // Don't delete options to preserve settings
 }
 
 /**
+ * One-time migration: copy old `intelligizedigital_chatassist_*` options to new
+ * `ackm_chatassist_*` keys so existing installs don't lose their data after
+ * the v4.0.4 internal prefix rename. Runs once, then sets a flag.
+ *
+ * Also migrates the custom capability and any saved user-meta keys.
+ *
+ * @since 4.0.4
+ */
+function ackm_chatassist_maybe_migrate_legacy_options() {
+    if (get_option('ackm_chatassist_migrated_v404', '0') === '1') {
+        return;
+    }
+
+    global $wpdb;
+    $legacy_prefix = 'intelligizedigital_chatassist_';
+    $new_prefix    = 'ackm_chatassist_';
+
+    // Find every option that begins with the legacy prefix.
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+    $legacy_rows = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT option_name, option_value, autoload FROM {$wpdb->options} WHERE option_name LIKE %s",
+            $wpdb->esc_like($legacy_prefix) . '%'
+        )
+    );
+
+    if (!empty($legacy_rows)) {
+        foreach ($legacy_rows as $row) {
+            $new_key = $new_prefix . substr($row->option_name, strlen($legacy_prefix));
+            // Only migrate if the new key does not already have a value.
+            if (get_option($new_key, null) === null) {
+                $value = maybe_unserialize($row->option_value);
+                add_option($new_key, $value, '', $row->autoload);
+            }
+            // Remove the legacy key to keep the DB clean.
+            delete_option($row->option_name);
+        }
+    }
+
+    // Migrate the custom capability for every role that had it.
+    foreach (wp_roles()->roles as $role_slug => $role_info) {
+        $role = get_role($role_slug);
+        if ($role && $role->has_cap('manage_intelligizedigital_chatassist')) {
+            $role->add_cap('manage_ackm_chatassist');
+            $role->remove_cap('manage_intelligizedigital_chatassist');
+        }
+    }
+
+    update_option('ackm_chatassist_migrated_v404', '1', true);
+}
+add_action('plugins_loaded', 'ackm_chatassist_maybe_migrate_legacy_options', 1);
+
+/**
  * Initialize the admin settings
  */
-function intelligizedigital_chatassist_init_admin() {
-    if (!current_user_can('manage_intelligizedigital_chatassist') && !current_user_can('manage_options')) {
+function ackm_chatassist_init_admin() {
+    if (!current_user_can('manage_ackm_chatassist') && !current_user_can('manage_options')) {
         return;
     }
     
-    $admin = new IntelligizeDigital_ChatAssist_Admin();
+    $admin = new Ackm_ChatAssist_Admin();
     $admin->init();
 }
-add_action('init', 'intelligizedigital_chatassist_init_admin');
+add_action('init', 'ackm_chatassist_init_admin');
 
 // Initialize REST API, GDPR, Webhooks, A/B Testing
-IntelligizeDigital_ChatAssist_REST_API::init();
-IntelligizeDigital_ChatAssist_GDPR::init();
-IntelligizeDigital_ChatAssist_Webhooks::init();
-IntelligizeDigital_ChatAssist_AB_Testing::init();
-IntelligizeDigital_ChatAssist_Widget_Profiles::init();
-IntelligizeDigital_ChatAssist_Integrations::init();
-IntelligizeDigital_ChatAssist_Goals::init();
-IntelligizeDigital_ChatAssist_Marketing::init();
-IntelligizeDigital_ChatAssist_Mobile::init();
-IntelligizeDigital_ChatAssist_Push::init();
+Ackm_ChatAssist_REST_API::init();
+Ackm_ChatAssist_GDPR::init();
+Ackm_ChatAssist_Webhooks::init();
+Ackm_ChatAssist_AB_Testing::init();
+Ackm_ChatAssist_Widget_Profiles::init();
+Ackm_ChatAssist_Integrations::init();
+Ackm_ChatAssist_Goals::init();
+Ackm_ChatAssist_Marketing::init();
+Ackm_ChatAssist_Mobile::init();
+Ackm_ChatAssist_Push::init();
 
 /**
- * Shortcode: [intelligizedigital_chatassist]
+ * Shortcode: [ackm_chatassist]
  */
-function intelligizedigital_chatassist_shortcode($atts) {
-    if (!IntelligizeDigital_ChatAssist_Display_Rules::should_display()) {
+function ackm_chatassist_shortcode($atts) {
+    if (!Ackm_ChatAssist_Display_Rules::should_display()) {
         return '';
     }
     ob_start();
-    include INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'public/partials/intelligizedigital-chatassist-public-display.php';
+    include ACKM_CHATASSIST_PATH . 'public/partials/ackm-chatassist-public-display.php';
     return ob_get_clean();
 }
-add_shortcode('intelligizedigital_chatassist', 'intelligizedigital_chatassist_shortcode');
+add_shortcode('ackm_chatassist', 'ackm_chatassist_shortcode');
 
 /**
  * Enqueue frontend scripts and styles
  */
-function intelligizedigital_chatassist_enqueue_scripts() {
-    if (!IntelligizeDigital_ChatAssist_Display_Rules::should_display()) {
+function ackm_chatassist_enqueue_scripts() {
+    if (!Ackm_ChatAssist_Display_Rules::should_display()) {
         return;
     }
     
-    wp_enqueue_style('intelligizedigital-chatassist-style', INTELLIGIZEDIGITAL_CHATASSIST_URL . 'assets/css/intelligizedigital-chatassist.css', array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION);
-    wp_enqueue_script('intelligizedigital-chatassist-script', INTELLIGIZEDIGITAL_CHATASSIST_URL . 'assets/js/intelligizedigital-chatassist.js', array('jquery'), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
+    wp_enqueue_style('ackm-chatassist-style', ACKM_CHATASSIST_URL . 'assets/css/ackm-chatassist.css', array(), ACKM_CHATASSIST_VERSION);
+    wp_enqueue_script('ackm-chatassist-script', ACKM_CHATASSIST_URL . 'assets/js/ackm-chatassist.js', array('jquery'), ACKM_CHATASSIST_VERSION, true);
     
-    $zoom = intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_zoom', '100');
+    $zoom = ackm_chatassist_get_option('ackm_chatassist_zoom', '100');
     $zoom = max(50, min(150, intval($zoom)));
-    $color = apply_filters('intelligizedigital_chatassist_widget_color', intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_color', '#667eea'));
+    $color = apply_filters('ackm_chatassist_widget_color', ackm_chatassist_get_option('ackm_chatassist_color', '#667eea'));
     
-    $delay = max(0, intval(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_delay_seconds', '0')));
-    $scroll_depth = max(0, min(100, intval(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_scroll_depth', '0'))));
-    $gdpr_consent = IntelligizeDigital_ChatAssist_GDPR::consent_required();
+    $delay = max(0, intval(ackm_chatassist_get_option('ackm_chatassist_delay_seconds', '0')));
+    $scroll_depth = max(0, min(100, intval(ackm_chatassist_get_option('ackm_chatassist_scroll_depth', '0'))));
+    $gdpr_consent = Ackm_ChatAssist_GDPR::consent_required();
 
-    wp_localize_script('intelligizedigital-chatassist-script', 'intelligizedigitalChatAssistData', array(
-        'chatUrl' => esc_url(intelligizedigital_chatassist_get_chat_url()),
-        'position' => esc_attr(apply_filters('intelligizedigital_chatassist_widget_position', intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_position', 'right'))),
-        'title' => esc_attr(apply_filters('intelligizedigital_chatassist_widget_title', intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_title', 'Chat Support'))),
+    wp_localize_script('ackm-chatassist-script', 'ackmChatAssistData', array(
+        'chatUrl' => esc_url(ackm_chatassist_get_chat_url()),
+        'position' => esc_attr(apply_filters('ackm_chatassist_widget_position', ackm_chatassist_get_option('ackm_chatassist_position', 'right'))),
+        'title' => esc_attr(apply_filters('ackm_chatassist_widget_title', ackm_chatassist_get_option('ackm_chatassist_title', 'Chat Support'))),
         'color' => esc_attr($color),
-        'icon' => esc_attr(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_icon', '💬')),
-        'iconType' => esc_attr(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_icon_type', 'emoji')),
-        'svgIcon' => esc_attr(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_svg_icon', '')),
+        'icon' => esc_attr(ackm_chatassist_get_option('ackm_chatassist_icon', '💬')),
+        'iconType' => esc_attr(ackm_chatassist_get_option('ackm_chatassist_icon_type', 'emoji')),
+        'svgIcon' => esc_attr(ackm_chatassist_get_option('ackm_chatassist_svg_icon', '')),
         'zoom' => $zoom,
         'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('intelligizedigital_chatassist_ajax_nonce'),
-        'analyticsEnabled' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_analytics_enabled', 'yes') === 'yes',
+        'nonce' => wp_create_nonce('ackm_chatassist_ajax_nonce'),
+        'analyticsEnabled' => ackm_chatassist_get_option('ackm_chatassist_analytics_enabled', 'yes') === 'yes',
         'delaySeconds' => $delay,
         'scrollDepth' => $scroll_depth,
-        'exitIntent' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_exit_intent', 'no') === 'yes',
-        'proactiveMessage' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_proactive_message', ''),
-        'proactiveDelay' => max(1, intval(intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_proactive_delay', '10'))),
-        'preChatForm' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_pre_chat_form', 'no') === 'yes',
-        'preChatFields' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_pre_chat_fields', 'name,email'),
-        'unreadBadge' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_unread_badge', 'no') === 'yes',
-        'theme' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_theme', 'light'),
+        'exitIntent' => ackm_chatassist_get_option('ackm_chatassist_exit_intent', 'no') === 'yes',
+        'proactiveMessage' => ackm_chatassist_get_option('ackm_chatassist_proactive_message', ''),
+        'proactiveDelay' => max(1, intval(ackm_chatassist_get_option('ackm_chatassist_proactive_delay', '10'))),
+        'preChatForm' => ackm_chatassist_get_option('ackm_chatassist_pre_chat_form', 'no') === 'yes',
+        'preChatFields' => ackm_chatassist_get_option('ackm_chatassist_pre_chat_fields', 'name,email'),
+        'unreadBadge' => ackm_chatassist_get_option('ackm_chatassist_unread_badge', 'no') === 'yes',
+        'theme' => ackm_chatassist_get_option('ackm_chatassist_theme', 'light'),
         'gdprConsent' => $gdpr_consent,
-        'layout' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_layout', 'popup'),
-        'typingIndicator' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_typing_indicator', 'no') === 'yes',
-        'soundEnabled' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_sound_enabled', 'no') === 'yes',
-        'preChatToUrl' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_pre_chat_to_url', 'yes') === 'yes',
-        'heatmapEnabled' => intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_heatmap_enabled', 'no') === 'yes',
-        'abVariant' => class_exists('IntelligizeDigital_ChatAssist_AB_Testing') ? IntelligizeDigital_ChatAssist_AB_Testing::get_variant_for_js() : 'control',
+        'layout' => ackm_chatassist_get_option('ackm_chatassist_layout', 'popup'),
+        'typingIndicator' => ackm_chatassist_get_option('ackm_chatassist_typing_indicator', 'no') === 'yes',
+        'soundEnabled' => ackm_chatassist_get_option('ackm_chatassist_sound_enabled', 'no') === 'yes',
+        'preChatToUrl' => ackm_chatassist_get_option('ackm_chatassist_pre_chat_to_url', 'yes') === 'yes',
+        'heatmapEnabled' => ackm_chatassist_get_option('ackm_chatassist_heatmap_enabled', 'no') === 'yes',
+        'abVariant' => class_exists('Ackm_ChatAssist_AB_Testing') ? Ackm_ChatAssist_AB_Testing::get_variant_for_js() : 'control',
     ));
     
     $custom_css = "
-        .intelligizedigital-chatassist-button, .intelligizedigital-chatassist-header {
+        .ackm-chatassist-button, .ackm-chatassist-header {
             background-color: " . esc_attr($color) . ";
         }
-        .intelligizedigital-chatassist-button:hover {
-            background-color: " . esc_attr(intelligizedigital_chatassist_adjust_color_brightness($color, -15)) . ";
+        .ackm-chatassist-button:hover {
+            background-color: " . esc_attr(ackm_chatassist_adjust_color_brightness($color, -15)) . ";
         }
     ";
-    wp_add_inline_style('intelligizedigital-chatassist-style', $custom_css);
+    wp_add_inline_style('ackm-chatassist-style', $custom_css);
 }
-add_action('wp_enqueue_scripts', 'intelligizedigital_chatassist_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'ackm_chatassist_enqueue_scripts');
 
 /**
  * Add the chat widget to the footer
  */
-function intelligizedigital_chatassist_add_to_footer() {
-    if (!IntelligizeDigital_ChatAssist_Display_Rules::should_display()) {
+function ackm_chatassist_add_to_footer() {
+    if (!Ackm_ChatAssist_Display_Rules::should_display()) {
         return;
     }
     
-    do_action('intelligizedigital_chatassist_before_widget_render');
+    do_action('ackm_chatassist_before_widget_render');
     
     ob_start();
-    include INTELLIGIZEDIGITAL_CHATASSIST_PATH . 'public/partials/intelligizedigital-chatassist-public-display.php';
+    include ACKM_CHATASSIST_PATH . 'public/partials/ackm-chatassist-public-display.php';
     $widget_html = ob_get_clean();
     
-    $widget_html = apply_filters('intelligizedigital_chatassist_widget_html', $widget_html);
+    $widget_html = apply_filters('ackm_chatassist_widget_html', $widget_html);
     echo wp_kses_post($widget_html);
     
-    do_action('intelligizedigital_chatassist_after_widget_render');
+    do_action('ackm_chatassist_after_widget_render');
 }
-add_action('wp_footer', 'intelligizedigital_chatassist_add_to_footer');
+add_action('wp_footer', 'ackm_chatassist_add_to_footer');
 
 
 /**
  * WooCommerce: Set flag to open chat after add to cart
  */
 add_action('woocommerce_add_to_cart', function() {
-    set_transient('intelligizedigital_chatassist_open_trigger', 1, 60);
+    set_transient('ackm_chatassist_open_trigger', 1, 60);
 }, 10, 0);
 
 /**
  * WooCommerce: Track conversion when order is completed
  */
 add_action('woocommerce_order_status_completed', function() {
-    if (get_option('intelligizedigital_chatassist_conversion_tracking', 'no') === 'yes') {
-        IntelligizeDigital_ChatAssist_Analytics::track_conversion();
+    if (get_option('ackm_chatassist_conversion_tracking', 'no') === 'yes') {
+        Ackm_ChatAssist_Analytics::track_conversion();
     }
 });
 
@@ -271,31 +324,31 @@ add_action('woocommerce_order_status_completed', function() {
  * Contact Form 7: Set flag to open chat after form submission
  */
 add_action('wpcf7_mail_sent', function() {
-    set_transient('intelligizedigital_chatassist_open_trigger', 1, 60);
+    set_transient('ackm_chatassist_open_trigger', 1, 60);
 });
 
 /**
  * WPForms: Set flag to open chat after form submission
  */
 add_action('wpforms_process_complete', function($fields, $entry, $form_data) {
-    set_transient('intelligizedigital_chatassist_open_trigger', 1, 60);
+    set_transient('ackm_chatassist_open_trigger', 1, 60);
 }, 10, 3);
 
 /**
  * Enqueue script to trigger chat open when transient is set (WooCommerce, CF7, WPForms)
  */
 add_action('wp_enqueue_scripts', function() {
-    if (!get_transient('intelligizedigital_chatassist_open_trigger')) {
+    if (!get_transient('ackm_chatassist_open_trigger')) {
         return;
     }
-    if (!IntelligizeDigital_ChatAssist_Display_Rules::should_display()) {
-        delete_transient('intelligizedigital_chatassist_open_trigger');
+    if (!Ackm_ChatAssist_Display_Rules::should_display()) {
+        delete_transient('ackm_chatassist_open_trigger');
         return;
     }
-    delete_transient('intelligizedigital_chatassist_open_trigger');
+    delete_transient('ackm_chatassist_open_trigger');
     wp_add_inline_script(
-        'intelligizedigital-chatassist-script',
-        'jQuery(document).ready(function(){jQuery(document).trigger("intelligizedigital_chatassist_open");});'
+        'ackm-chatassist-script',
+        'jQuery(document).ready(function(){jQuery(document).trigger("ackm_chatassist_open");});'
     );
 }, 20);
 
@@ -305,15 +358,15 @@ add_action('wp_enqueue_scripts', function() {
  * @since 1.0.0
  * @return bool True if enabled, false otherwise.
  */
-function intelligizedigital_chatassist_is_enabled() {
-    if (get_option('intelligizedigital_chatassist_enabled', 'yes') !== 'yes') {
+function ackm_chatassist_is_enabled() {
+    if (get_option('ackm_chatassist_enabled', 'yes') !== 'yes') {
         return false;
     }
-    if (!empty(get_option('intelligizedigital_chatassist_url', ''))) {
+    if (!empty(get_option('ackm_chatassist_url', ''))) {
         return true;
     }
-    if (class_exists('IntelligizeDigital_ChatAssist_Widget_Profiles') && IntelligizeDigital_ChatAssist_Widget_Profiles::is_enabled()) {
-        $profile = IntelligizeDigital_ChatAssist_Widget_Profiles::get_active_profile();
+    if (class_exists('Ackm_ChatAssist_Widget_Profiles') && Ackm_ChatAssist_Widget_Profiles::is_enabled()) {
+        $profile = Ackm_ChatAssist_Widget_Profiles::get_active_profile();
         return $profile && !empty($profile['url']);
     }
     return false;
@@ -323,11 +376,11 @@ function intelligizedigital_chatassist_is_enabled() {
  * Get a plugin option value.
  *
  * @since 1.0.0
- * @param string $option_name Option name (e.g. 'intelligizedigital_chatassist_url').
+ * @param string $option_name Option name (e.g. 'ackm_chatassist_url').
  * @param mixed  $default     Default value if option not set.
  * @return mixed Option value.
  */
-function intelligizedigital_chatassist_get_option($option_name, $default = '') {
+function ackm_chatassist_get_option($option_name, $default = '') {
     return get_option($option_name, $default);
 }
 
@@ -337,15 +390,15 @@ function intelligizedigital_chatassist_get_option($option_name, $default = '') {
  * @since 1.0.0
  * @return string Chat URL.
  */
-function intelligizedigital_chatassist_get_chat_url() {
-    $url = intelligizedigital_chatassist_get_option('intelligizedigital_chatassist_url', '');
-    return apply_filters('intelligizedigital_chatassist_chat_url', $url);
+function ackm_chatassist_get_chat_url() {
+    $url = ackm_chatassist_get_option('ackm_chatassist_url', '');
+    return apply_filters('ackm_chatassist_chat_url', $url);
 }
 
 /**
  * Helper function to adjust color brightness
  */
-function intelligizedigital_chatassist_adjust_color_brightness($hex, $steps) {
+function ackm_chatassist_adjust_color_brightness($hex, $steps) {
     $steps = max(-255, min(255, $steps));
     $hex = str_replace('#', '', $hex);
     if (strlen($hex) == 3) {
@@ -360,7 +413,7 @@ function intelligizedigital_chatassist_adjust_color_brightness($hex, $steps) {
 /**
  * Helper function to display SVG images
  */
-function intelligizedigital_chatassist_display_svg($svg_url, $size = array(24, 24), $attr = array()) {
+function ackm_chatassist_display_svg($svg_url, $size = array(24, 24), $attr = array()) {
     if (empty($svg_url)) {
         return '';
     }
@@ -380,25 +433,25 @@ function intelligizedigital_chatassist_display_svg($svg_url, $size = array(24, 2
     }
     $img_html .= '>';
     $allowed_html = array('img' => array('src' => array(), 'width' => array(), 'height' => array(), 'alt' => array(), 'class' => array(), 'style' => array(), 'id' => array()));
-    return '<span class="intelligizedigital-chatassist-svg-wrapper">' . wp_kses($img_html, $allowed_html) . '</span>';
+    return '<span class="ackm-chatassist-svg-wrapper">' . wp_kses($img_html, $allowed_html) . '</span>';
 }
 
 // Add plugin action links
-function intelligizedigital_chatassist_plugin_action_links($links) {
-    if (!current_user_can('manage_intelligizedigital_chatassist') && !current_user_can('manage_options')) {
+function ackm_chatassist_plugin_action_links($links) {
+    if (!current_user_can('manage_ackm_chatassist') && !current_user_can('manage_options')) {
         return $links;
     }
-    $settings_link = '<a href="' . esc_url(admin_url('admin.php?page=intelligizedigital_chatassist')) . '">' . esc_html__('Settings', 'intelligizedigital-chatassist') . '</a>';
+    $settings_link = '<a href="' . esc_url(admin_url('admin.php?page=ackm_chatassist')) . '">' . esc_html__('Settings', 'intelligizedigital-chatassist') . '</a>';
     array_unshift($links, $settings_link);
     return $links;
 }
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'intelligizedigital_chatassist_plugin_action_links');
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'ackm_chatassist_plugin_action_links');
 
 /**
  * AJAX handler for analytics tracking
  */
-function intelligizedigital_chatassist_track_analytics() {
-    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'intelligizedigital_chatassist_ajax_nonce')) {
+function ackm_chatassist_track_analytics() {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ackm_chatassist_ajax_nonce')) {
         wp_send_json_error(array('message' => __('Security check failed.', 'intelligizedigital-chatassist')));
     }
     $event_type = isset($_POST['event_type']) ? sanitize_text_field(wp_unslash($_POST['event_type'])) : '';
@@ -408,19 +461,19 @@ function intelligizedigital_chatassist_track_analytics() {
     $ab_variant = isset($_POST['ab_variant']) ? sanitize_text_field(wp_unslash($_POST['ab_variant'])) : '';
     switch ($event_type) {
         case 'widget_opened':
-            IntelligizeDigital_ChatAssist_Analytics::track_open();
+            Ackm_ChatAssist_Analytics::track_open();
             if (!empty($ab_variant)) {
-                IntelligizeDigital_ChatAssist_Analytics::track_variant_event($ab_variant, 'open');
+                Ackm_ChatAssist_Analytics::track_variant_event($ab_variant, 'open');
             }
-            do_action('intelligizedigital_chatassist_widget_opened');
+            do_action('ackm_chatassist_widget_opened');
             break;
         case 'widget_closed':
-            IntelligizeDigital_ChatAssist_Analytics::track_close();
-            do_action('intelligizedigital_chatassist_widget_closed');
+            Ackm_ChatAssist_Analytics::track_close();
+            do_action('ackm_chatassist_widget_closed');
             break;
         case 'message_sent':
-            IntelligizeDigital_ChatAssist_Analytics::track_message();
-            do_action('intelligizedigital_chatassist_message_sent');
+            Ackm_ChatAssist_Analytics::track_message();
+            do_action('ackm_chatassist_message_sent');
             break;
         case 'lead_captured':
             $lead = array(
@@ -428,24 +481,24 @@ function intelligizedigital_chatassist_track_analytics() {
                 'email' => isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '',
                 'phone' => isset($_POST['phone']) ? sanitize_text_field(wp_unslash($_POST['phone'])) : '',
             );
-            do_action('intelligizedigital_chatassist_lead_captured', $lead);
-            $analytics = get_option('intelligizedigital_chatassist_analytics', array());
+            do_action('ackm_chatassist_lead_captured', $lead);
+            $analytics = get_option('ackm_chatassist_analytics', array());
             $today = gmdate('Y-m-d');
             if (!isset($analytics[$today]['leads'])) $analytics[$today]['leads'] = 0;
             $analytics[$today]['leads']++;
-            update_option('intelligizedigital_chatassist_analytics', $analytics);
+            update_option('ackm_chatassist_analytics', $analytics);
             break;
         case 'conversion':
-            IntelligizeDigital_ChatAssist_Analytics::track_conversion();
+            Ackm_ChatAssist_Analytics::track_conversion();
             if (!empty($ab_variant)) {
-                IntelligizeDigital_ChatAssist_Analytics::track_variant_event($ab_variant, 'conversion');
+                Ackm_ChatAssist_Analytics::track_variant_event($ab_variant, 'conversion');
             }
             break;
         case 'heatmap':
             $type = isset($_POST['heatmap_type']) ? sanitize_text_field(wp_unslash($_POST['heatmap_type'])) : '';
             $value = isset($_POST['heatmap_value']) ? sanitize_text_field(wp_unslash($_POST['heatmap_value'])) : '';
             if (in_array($type, array('scroll', 'click'))) {
-                IntelligizeDigital_ChatAssist_Analytics::track_heatmap($type, $value);
+                Ackm_ChatAssist_Analytics::track_heatmap($type, $value);
             }
             break;
         default:
@@ -454,14 +507,14 @@ function intelligizedigital_chatassist_track_analytics() {
     }
     wp_send_json_success(array('message' => __('Event tracked.', 'intelligizedigital-chatassist')));
 }
-add_action('wp_ajax_intelligizedigital_chatassist_track', 'intelligizedigital_chatassist_track_analytics');
-add_action('wp_ajax_nopriv_intelligizedigital_chatassist_track', 'intelligizedigital_chatassist_track_analytics');
+add_action('wp_ajax_ackm_chatassist_track', 'ackm_chatassist_track_analytics');
+add_action('wp_ajax_nopriv_ackm_chatassist_track', 'ackm_chatassist_track_analytics');
 
 /**
  * AJAX: Attribute WooCommerce order to chat (session-based)
  */
-function intelligizedigital_chatassist_attr_order() {
-    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'intelligizedigital_chatassist_attr_order')) {
+function ackm_chatassist_attr_order() {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ackm_chatassist_attr_order')) {
         wp_send_json_error();
     }
     $order_id = isset($_POST['order_id']) ? absint($_POST['order_id']) : 0;
@@ -476,18 +529,18 @@ function intelligizedigital_chatassist_attr_order() {
     if (!empty($order_key) && $order->get_order_key() !== $order_key) {
         wp_send_json_error();
     }
-    $order->update_meta_data('_intelligizedigital_chatassist_attributed', '1');
+    $order->update_meta_data('_ackm_chatassist_attributed', '1');
     $order->save();
     wp_send_json_success();
 }
-add_action('wp_ajax_intelligizedigital_chatassist_attr_order', 'intelligizedigital_chatassist_attr_order');
-add_action('wp_ajax_nopriv_intelligizedigital_chatassist_attr_order', 'intelligizedigital_chatassist_attr_order');
+add_action('wp_ajax_ackm_chatassist_attr_order', 'ackm_chatassist_attr_order');
+add_action('wp_ajax_nopriv_ackm_chatassist_attr_order', 'ackm_chatassist_attr_order');
 
 /**
  * WooCommerce: On order-received, if chat cookie exists, attribute order
  */
 add_action('woocommerce_thankyou', function($order_id) {
-    if (!$order_id || get_option('intelligizedigital_chatassist_conversion_tracking', 'no') !== 'yes') {
+    if (!$order_id || get_option('ackm_chatassist_conversion_tracking', 'no') !== 'yes') {
         return;
     }
     if (!function_exists('wc_get_order')) {
@@ -498,18 +551,18 @@ add_action('woocommerce_thankyou', function($order_id) {
         return;
     }
     $ajax_url  = admin_url('admin-ajax.php');
-    $nonce     = wp_create_nonce('intelligizedigital_chatassist_attr_order');
+    $nonce     = wp_create_nonce('ackm_chatassist_attr_order');
     $order_key = $order->get_order_key();
-    $js        = '(function(){if(document.cookie.indexOf("intelligizedigital_chatassist_opened=") === -1)return;';
+    $js        = '(function(){if(document.cookie.indexOf("ackm_chatassist_opened=") === -1)return;';
     $js       .= 'var x=new XMLHttpRequest();';
     $js       .= 'x.open("POST",' . wp_json_encode($ajax_url) . ',true);';
     $js       .= 'x.setRequestHeader("Content-Type","application/x-www-form-urlencoded");';
-    $js       .= 'x.send("action=intelligizedigital_chatassist_attr_order';
+    $js       .= 'x.send("action=ackm_chatassist_attr_order';
     $js       .= '&order_id=' . absint($order_id);
     $js       .= '&order_key=' . rawurlencode($order_key);
     $js       .= '&nonce=' . rawurlencode($nonce) . '");';
     $js       .= '})();';
-    wp_register_script('intelligizedigital-chatassist-attr', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-    wp_enqueue_script('intelligizedigital-chatassist-attr');
-    wp_add_inline_script('intelligizedigital-chatassist-attr', $js);
+    wp_register_script('ackm-chatassist-attr', false, array(), ACKM_CHATASSIST_VERSION, true);
+    wp_enqueue_script('ackm-chatassist-attr');
+    wp_add_inline_script('ackm-chatassist-attr', $js);
 }, 5);

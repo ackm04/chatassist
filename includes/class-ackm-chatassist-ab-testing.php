@@ -1,8 +1,8 @@
 <?php
 /**
- * A/B Testing for Intelligize ChatAssist
+ * A/B Testing for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 3.0.0
  */
 
@@ -13,15 +13,15 @@ if (!defined('ABSPATH')) {
 /**
  * A/B test different chat URLs or variants
  */
-class IntelligizeDigital_ChatAssist_AB_Testing {
+class Ackm_ChatAssist_AB_Testing {
 
     public static function init() {
-        add_filter('intelligizedigital_chatassist_chat_url', array(__CLASS__, 'get_variant_url'), 10, 1);
-        add_filter('intelligizedigital_chatassist_widget_color', array(__CLASS__, 'get_variant_color'), 10, 1);
+        add_filter('ackm_chatassist_chat_url', array(__CLASS__, 'get_variant_url'), 10, 1);
+        add_filter('ackm_chatassist_widget_color', array(__CLASS__, 'get_variant_color'), 10, 1);
     }
 
     public static function is_enabled() {
-        return get_option('intelligizedigital_chatassist_ab_testing', 'no') === 'yes';
+        return get_option('ackm_chatassist_ab_testing', 'no') === 'yes';
     }
 
     private static $cached_variant = null;
@@ -34,11 +34,11 @@ class IntelligizeDigital_ChatAssist_AB_Testing {
             self::$cached_variant = 'control';
             return 'control';
         }
-        if (isset($_COOKIE['intelligizedigital_chatassist_variant'])) {
-            self::$cached_variant = sanitize_text_field(wp_unslash($_COOKIE['intelligizedigital_chatassist_variant']));
+        if (isset($_COOKIE['ackm_chatassist_variant'])) {
+            self::$cached_variant = sanitize_text_field(wp_unslash($_COOKIE['ackm_chatassist_variant']));
             return self::$cached_variant;
         }
-        $variants = get_option('intelligizedigital_chatassist_ab_variants', array());
+        $variants = get_option('ackm_chatassist_ab_variants', array());
         if (empty($variants)) {
             self::$cached_variant = 'control';
             return 'control';
@@ -65,7 +65,7 @@ class IntelligizeDigital_ChatAssist_AB_Testing {
             return $url;
         }
         $variant = self::get_user_variant();
-        $variants = get_option('intelligizedigital_chatassist_ab_variants', array());
+        $variants = get_option('ackm_chatassist_ab_variants', array());
         foreach ($variants as $v) {
             if (isset($v['id']) && $v['id'] === $variant && !empty($v['url'])) {
                 return $v['url'];
@@ -79,7 +79,7 @@ class IntelligizeDigital_ChatAssist_AB_Testing {
             return $color;
         }
         $variant = self::get_user_variant();
-        $variants = get_option('intelligizedigital_chatassist_ab_variants', array());
+        $variants = get_option('ackm_chatassist_ab_variants', array());
         foreach ($variants as $v) {
             if (isset($v['id']) && $v['id'] === $variant && !empty($v['color'])) {
                 return $v['color'];

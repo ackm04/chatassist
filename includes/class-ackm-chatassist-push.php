@@ -5,7 +5,7 @@
  * Collects browser push subscriptions via the Web Push API.
  * Sending notifications requires external VAPID key configuration.
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 4.0.0
  */
 
@@ -13,27 +13,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class IntelligizeDigital_ChatAssist_Push {
+class Ackm_ChatAssist_Push {
 
 	public static function init() {
 		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
-		add_action( 'wp_ajax_intelligizedigital_chatassist_push_subscribe', array( __CLASS__, 'ajax_subscribe' ) );
-		add_action( 'wp_ajax_nopriv_intelligizedigital_chatassist_push_subscribe', array( __CLASS__, 'ajax_subscribe' ) );
-		add_action( 'wp_ajax_intelligizedigital_chatassist_push_send', array( __CLASS__, 'ajax_send' ) );
-		add_action( 'wp_ajax_intelligizedigital_chatassist_push_generate_keys', array( __CLASS__, 'ajax_generate_keys' ) );
+		add_action( 'wp_ajax_ackm_chatassist_push_subscribe', array( __CLASS__, 'ajax_subscribe' ) );
+		add_action( 'wp_ajax_nopriv_ackm_chatassist_push_subscribe', array( __CLASS__, 'ajax_subscribe' ) );
+		add_action( 'wp_ajax_ackm_chatassist_push_send', array( __CLASS__, 'ajax_send' ) );
+		add_action( 'wp_ajax_ackm_chatassist_push_generate_keys', array( __CLASS__, 'ajax_generate_keys' ) );
 	}
 
 	public static function is_enabled() {
-		return get_option( 'intelligizedigital_chatassist_push_enabled', 'no' ) === 'yes'
+		return get_option( 'ackm_chatassist_push_enabled', 'no' ) === 'yes'
 			&& ! empty( self::get_vapid_public() );
 	}
 
 	public static function get_vapid_public() {
-		return get_option( 'intelligizedigital_chatassist_vapid_public', '' );
+		return get_option( 'ackm_chatassist_vapid_public', '' );
 	}
 
 	public static function get_vapid_private() {
-		return get_option( 'intelligizedigital_chatassist_vapid_private', '' );
+		return get_option( 'ackm_chatassist_vapid_private', '' );
 	}
 
 	/**
@@ -42,7 +42,7 @@ class IntelligizeDigital_ChatAssist_Push {
 	 */
 	public static function ajax_generate_keys() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'intelligizedigital_chatassist_push_admin' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'ackm_chatassist_push_admin' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'intelligizedigital-chatassist' ) ) );
 		}
 		wp_send_json_error( array(
@@ -55,7 +55,7 @@ class IntelligizeDigital_ChatAssist_Push {
 	 */
 	public static function ajax_subscribe() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'intelligizedigital_chatassist_ajax_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'ackm_chatassist_ajax_nonce' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Invalid nonce', 'intelligizedigital-chatassist' ) ) );
 		}
 		$raw = isset( $_POST['subscription'] ) ? sanitize_textarea_field( wp_unslash( $_POST['subscription'] ) ) : '';
@@ -75,7 +75,7 @@ class IntelligizeDigital_ChatAssist_Push {
 	 */
 	public static function ajax_send() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'intelligizedigital_chatassist_push_admin' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'ackm_chatassist_push_admin' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Unauthorized', 'intelligizedigital-chatassist' ) ) );
 		}
 		wp_send_json_error( array(
@@ -103,7 +103,7 @@ class IntelligizeDigital_ChatAssist_Push {
 	 * REST API: store a push subscription.
 	 */
 	public static function register_routes() {
-		register_rest_route( 'intelligizedigital-chatassist/v1', '/push/subscribe', array(
+		register_rest_route( 'ackm-chatassist/v1', '/push/subscribe', array(
 			'methods'             => 'POST',
 			'callback'            => array( __CLASS__, 'rest_subscribe' ),
 			'permission_callback' => '__return_true',
@@ -133,7 +133,7 @@ class IntelligizeDigital_ChatAssist_Push {
 			? array_map( 'sanitize_text_field', $sub['keys'] )
 			: array();
 
-		$subs = get_option( 'intelligizedigital_chatassist_push_subscriptions', array() );
+		$subs = get_option( 'ackm_chatassist_push_subscriptions', array() );
 		$subs = is_array( $subs ) ? $subs : array();
 		$key          = md5( $endpoint );
 		$subs[ $key ] = array(
@@ -143,6 +143,6 @@ class IntelligizeDigital_ChatAssist_Push {
 			'created'         => time(),
 		);
 		$subs = array_slice( $subs, -500, 500, true );
-		update_option( 'intelligizedigital_chatassist_push_subscriptions', $subs );
+		update_option( 'ackm_chatassist_push_subscriptions', $subs );
 	}
 }

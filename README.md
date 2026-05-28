@@ -1,4 +1,4 @@
-# Intelligize Digital ChatAssist
+# ChatAssist by Ajay
 
 > A lightweight, privacy-first WordPress chat widget plugin that connects any chat URL (n8n workflows, custom AI bots, third-party providers) to your site — with analytics, A/B testing, WooCommerce integration, multi-widget profiles, and PWA push.
 
@@ -61,9 +61,9 @@ Even **$3** for a coffee buys an hour of focused bug-squashing. 🙏
 
 ### From WordPress.org (recommended)
 1. WP Admin → **Plugins → Add New**
-2. Search "Intelligize Digital ChatAssist"
+2. Search "ChatAssist by Ajay"
 3. Install → Activate
-4. Navigate to **Intelligize Digital ChatAssist** in the admin menu
+4. Navigate to **ChatAssist by Ajay** in the admin menu
 
 ### From this repo
 ```bash
@@ -77,7 +77,7 @@ zip -r intelligizedigital-chatassist.zip intelligizedigital-chatassist -x "*.git
 ## 🔧 Quick start
 
 1. Activate the plugin
-2. Open **Intelligize Digital ChatAssist** in the WP admin menu
+2. Open **ChatAssist by Ajay** in the WP admin menu
 3. Paste your **Chat URL** (any chat webhook — n8n, AI bot, etc.)
 4. Pick a **position** (right/left), **color**, and **icon**
 5. Save — the widget appears on every front-end page
@@ -97,7 +97,7 @@ That's it. Browse the other tabs (Display Rules, Analytics, Marketing, Integrati
 
 ## 🔐 Security
 
-All admin endpoints are nonce-protected and capability-gated (`manage_intelligizedigital_chatassist` capability with `manage_options` fallback). All user input is sanitized on save and escaped on output (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`). All inline scripts use `wp_add_inline_script()` with `wp_json_encode()`'d data. SVG icons are rendered as `<img>` only (no inline embedding). Found a security issue? Please email **intelligizedigital@gmail.com** rather than opening a public issue.
+All admin endpoints are nonce-protected and capability-gated (`manage_ackm_chatassist` capability with `manage_options` fallback). All user input is sanitized on save and escaped on output (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`). All inline scripts use `wp_add_inline_script()` with `wp_json_encode()`'d data. SVG icons are rendered as `<img>` only (no inline embedding). Found a security issue? Please email **intelligizedigital@gmail.com** rather than opening a public issue.
 
 ---
 
@@ -133,8 +133,8 @@ See [LICENSE](LICENSE) for full text or visit https://www.gnu.org/licenses/gpl-2
 
 ---
 
-## 💛 Made with love by Intelligize Digital
+## 💛 Made with love by Ajay
 
-If you ship this on a client site or use it in production, drop us a line at **intelligizedigital@gmail.com** — we love seeing how people use it.
+If you ship this on a client site or use it in production, drop me a line at **intelligizedigital@gmail.com** — I love seeing how people use it.
 
-**[☕ Buy us a coffee](https://www.buymeacoffee.com/ackm04)** • **[❤️ Sponsor on GitHub](https://github.com/sponsors/ackm04)** • **[🌟 Star this repo](https://github.com/erp-linker/erplinker-chatassist)**
+**[☕ Buy me a coffee](https://www.buymeacoffee.com/ackm04)** • **[❤️ Sponsor on GitHub](https://github.com/sponsors/ackm04)** • **[🌟 Star this repo](https://github.com/erp-linker/erplinker-chatassist)**

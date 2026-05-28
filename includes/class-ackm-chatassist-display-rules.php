@@ -1,8 +1,8 @@
 <?php
 /**
- * Display rules for Intelligize ChatAssist
+ * Display rules for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 1.0.0
  */
 
@@ -12,9 +12,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Intelligize ChatAssist Display Rules Class
+ * ChatAssist Display Rules Class
  */
-class IntelligizeDigital_ChatAssist_Display_Rules {
+class Ackm_ChatAssist_Display_Rules {
 
     /**
      * Check if widget should be displayed
@@ -24,14 +24,14 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
      */
     public static function should_display() {
         // Check if widget is enabled
-        if (get_option('intelligizedigital_chatassist_enabled') !== 'yes') {
+        if (get_option('ackm_chatassist_enabled') !== 'yes') {
             return false;
         }
 
         // Check if URL is set (or we have a matching widget profile with URL)
-        $url = get_option('intelligizedigital_chatassist_url', '');
-        if (empty($url) && class_exists('IntelligizeDigital_ChatAssist_Widget_Profiles') && IntelligizeDigital_ChatAssist_Widget_Profiles::is_enabled()) {
-            $profile = IntelligizeDigital_ChatAssist_Widget_Profiles::get_active_profile();
+        $url = get_option('ackm_chatassist_url', '');
+        if (empty($url) && class_exists('Ackm_ChatAssist_Widget_Profiles') && Ackm_ChatAssist_Widget_Profiles::is_enabled()) {
+            $profile = Ackm_ChatAssist_Widget_Profiles::get_active_profile();
             if ($profile && !empty($profile['url'])) {
                 $url = $profile['url'];
             }
@@ -56,23 +56,23 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
         }
 
         // Check extended rules (day, device, geo, WooCommerce) if class exists
-        if (class_exists('IntelligizeDigital_ChatAssist_Extended_Rules')) {
-            if (!IntelligizeDigital_ChatAssist_Extended_Rules::check_day_rules()) {
+        if (class_exists('Ackm_ChatAssist_Extended_Rules')) {
+            if (!Ackm_ChatAssist_Extended_Rules::check_day_rules()) {
                 return false;
             }
-            if (!IntelligizeDigital_ChatAssist_Extended_Rules::check_device_rules()) {
+            if (!Ackm_ChatAssist_Extended_Rules::check_device_rules()) {
                 return false;
             }
-            if (!IntelligizeDigital_ChatAssist_Extended_Rules::check_geo_rules()) {
+            if (!Ackm_ChatAssist_Extended_Rules::check_geo_rules()) {
                 return false;
             }
-            if (!IntelligizeDigital_ChatAssist_Extended_Rules::check_woocommerce_rules()) {
+            if (!Ackm_ChatAssist_Extended_Rules::check_woocommerce_rules()) {
                 return false;
             }
         }
 
         // Allow filtering
-        return apply_filters('intelligizedigital_chatassist_should_display', true);
+        return apply_filters('ackm_chatassist_should_display', true);
     }
 
     /**
@@ -82,7 +82,7 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
      * @return bool True if should display on current page.
      */
     private static function check_page_rules() {
-        $show_on = get_option('intelligizedigital_chatassist_show_on', 'all');
+        $show_on = get_option('ackm_chatassist_show_on', 'all');
 
         if ($show_on === 'all') {
             return true;
@@ -101,7 +101,7 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
         }
 
         // Check exclude pages
-        $exclude_pages = get_option('intelligizedigital_chatassist_exclude_pages', '');
+        $exclude_pages = get_option('ackm_chatassist_exclude_pages', '');
         if (!empty($exclude_pages)) {
             $exclude_ids = array_map('intval', explode(',', $exclude_pages));
             if (is_page($exclude_ids) || is_single($exclude_ids)) {
@@ -110,7 +110,7 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
         }
 
         // Check include pages
-        $include_pages = get_option('intelligizedigital_chatassist_include_pages', '');
+        $include_pages = get_option('ackm_chatassist_include_pages', '');
         if (!empty($include_pages)) {
             $include_ids = array_map('intval', explode(',', $include_pages));
             if (is_page($include_ids) || is_single($include_ids)) {
@@ -129,14 +129,14 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
      * @return bool True if should display at current time.
      */
     private static function check_time_rules() {
-        $time_based = get_option('intelligizedigital_chatassist_time_based', 'no');
+        $time_based = get_option('ackm_chatassist_time_based', 'no');
 
         if ($time_based !== 'yes') {
             return true;
         }
 
-        $start_time = get_option('intelligizedigital_chatassist_start_time', '09:00');
-        $end_time = get_option('intelligizedigital_chatassist_end_time', '17:00');
+        $start_time = get_option('ackm_chatassist_start_time', '09:00');
+        $end_time = get_option('ackm_chatassist_end_time', '17:00');
         $timezone = get_option('timezone_string', 'UTC');
 
         if (empty($timezone)) {
@@ -173,13 +173,13 @@ class IntelligizeDigital_ChatAssist_Display_Rules {
      * @return bool True if should display for current user.
      */
     private static function check_user_role_rules() {
-        $role_based = get_option('intelligizedigital_chatassist_role_based', 'no');
+        $role_based = get_option('ackm_chatassist_role_based', 'no');
 
         if ($role_based !== 'yes') {
             return true;
         }
 
-        $show_to_roles = get_option('intelligizedigital_chatassist_show_to_roles', array());
+        $show_to_roles = get_option('ackm_chatassist_show_to_roles', array());
 
         if (empty($show_to_roles)) {
             return true;

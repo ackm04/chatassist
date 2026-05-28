@@ -1,0 +1,1340 @@
+/* ChatAssist Admin - Premium High-Quality Modern Design */
+
+/* ============================================
+   Premium Design System Variables
+   ============================================ */
+:root {
+    --ackm-chatassist-primary: #6366f1;
+    --ackm-chatassist-primary-dark: #4f46e5;
+    --ackm-chatassist-primary-light: #818cf8;
+    --ackm-chatassist-gradient-start: #6366f1;
+    --ackm-chatassist-gradient-end: #8b5cf6;
+    --ackm-chatassist-accent: #ec4899;
+    --ackm-chatassist-success: #10b981;
+    --ackm-chatassist-warning: #f59e0b;
+    --ackm-chatassist-error: #ef4444;
+    --ackm-chatassist-dark: #1e293b;
+    --ackm-chatassist-dark-light: #334155;
+    --ackm-chatassist-gray-50: #f8fafc;
+    --ackm-chatassist-gray-100: #f1f5f9;
+    --ackm-chatassist-gray-200: #e2e8f0;
+    --ackm-chatassist-gray-300: #cbd5e1;
+    --ackm-chatassist-gray-400: #94a3b8;
+    --ackm-chatassist-gray-500: #64748b;
+    --ackm-chatassist-gray-600: #475569;
+    --ackm-chatassist-gray-700: #334155;
+    --ackm-chatassist-gray-800: #1e293b;
+    --ackm-chatassist-gray-900: #0f172a;
+    --ackm-chatassist-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ackm-chatassist-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --ackm-chatassist-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --ackm-chatassist-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ackm-chatassist-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --ackm-chatassist-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --ackm-chatassist-radius-sm: 0.375rem;
+    --ackm-chatassist-radius: 0.5rem;
+    --ackm-chatassist-radius-md: 0.75rem;
+    --ackm-chatassist-radius-lg: 1rem;
+    --ackm-chatassist-radius-xl: 1.5rem;
+    --ackm-chatassist-radius-2xl: 2rem;
+    --ackm-chatassist-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --ackm-chatassist-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Base Styles & Reset
+   ============================================ */
+.ackm-chatassist-admin-wrapper {
+    margin: 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--ackm-chatassist-gray-800);
+    line-height: 1.6;
+}
+
+.ackm-chatassist-admin-wrapper * {
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Premium Header Section
+   ============================================ */
+.ackm-chatassist-header {
+    background: linear-gradient(135deg, var(--ackm-chatassist-gradient-start) 0%, var(--ackm-chatassist-gradient-end) 100%);
+    color: white;
+    padding: 40px 50px;
+    border-radius: var(--ackm-chatassist-radius-xl);
+    margin-bottom: 40px;
+    box-shadow: var(--ackm-chatassist-shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ackm-chatassist-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ackm-chatassist-header h1 {
+    margin: 0 0 12px 0;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ackm-chatassist-header h1 .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.95;
+}
+
+.ackm-chatassist-header p {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+/* ============================================
+   Premium Stats Cards
+   ============================================ */
+.ackm-chatassist-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.ackm-chatassist-stat-card {
+    background: white;
+    padding: 28px 32px;
+    border-radius: var(--ackm-chatassist-radius-lg);
+    box-shadow: var(--ackm-chatassist-shadow-md);
+    transition: var(--ackm-chatassist-transition);
+    border: 1px solid var(--ackm-chatassist-gray-200);
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    opacity: 0;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ackm-chatassist-shadow-xl);
+    border-color: var(--ackm-chatassist-primary-light);
+}
+
+.ackm-chatassist-stat-card:hover::before {
+    opacity: 1;
+}
+
+.ackm-chatassist-stat-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ackm-chatassist-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.ackm-chatassist-stat-card .stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ackm-chatassist-dark);
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ackm-chatassist-stat-card .stat-label {
+    font-size: 13px;
+    color: var(--ackm-chatassist-gray-500);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* ============================================
+   Premium Tabs Navigation
+   ============================================ */
+.ackm-chatassist-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding: 8px;
+    background: var(--ackm-chatassist-gray-50);
+    border-radius: var(--ackm-chatassist-radius-lg);
+    border: 1px solid var(--ackm-chatassist-gray-200);
+}
+
+.ackm-chatassist-tab {
+    padding: 10px 18px;
+    background: white;
+    border: 1px solid var(--ackm-chatassist-gray-200);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ackm-chatassist-gray-600);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--ackm-chatassist-radius-md);
+    white-space: nowrap;
+}
+
+.ackm-chatassist-tab .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.ackm-chatassist-tab:hover {
+    color: var(--ackm-chatassist-primary);
+    border-color: var(--ackm-chatassist-primary);
+    background: white;
+    box-shadow: 0 1px 3px rgba(102, 126, 234, 0.15);
+}
+
+.ackm-chatassist-tab:hover .dashicons {
+    opacity: 1;
+}
+
+.ackm-chatassist-tab.active {
+    color: white;
+    background: var(--ackm-chatassist-primary);
+    border-color: var(--ackm-chatassist-primary);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.35);
+}
+
+.ackm-chatassist-tab.active .dashicons {
+    opacity: 1;
+    color: white;
+}
+
+/* ============================================
+   Premium Tab Content
+   ============================================ */
+.ackm-chatassist-tab-content {
+    display: none;
+    animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ackm-chatassist-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Premium Layout Grid
+   ============================================ */
+.ackm-chatassist-admin-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+@media (max-width: 1400px) {
+    .ackm-chatassist-admin-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Premium Settings Card
+   ============================================ */
+.ackm-chatassist-settings-card {
+    background: white;
+    border-radius: var(--ackm-chatassist-radius-xl);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+    padding: 40px;
+    border: 1px solid var(--ackm-chatassist-gray-200);
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-settings-card:hover {
+    box-shadow: var(--ackm-chatassist-shadow-xl);
+}
+
+.ackm-chatassist-settings-card h2 {
+    margin: 0 0 32px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ackm-chatassist-dark);
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ackm-chatassist-gray-100);
+    letter-spacing: -0.3px;
+}
+
+/* ============================================
+   Premium Form Fields
+   ============================================ */
+.ackm-chatassist-form-group {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.ackm-chatassist-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.ackm-chatassist-form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--ackm-chatassist-dark);
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.ackm-chatassist-form-group input[type="text"],
+.ackm-chatassist-form-group input[type="url"],
+.ackm-chatassist-form-group input[type="number"],
+.ackm-chatassist-form-group input[type="time"],
+.ackm-chatassist-form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--ackm-chatassist-gray-300);
+    border-radius: var(--ackm-chatassist-radius-md);
+    font-size: 15px;
+    transition: var(--ackm-chatassist-transition);
+    background: white;
+    color: var(--ackm-chatassist-dark);
+    font-weight: 500;
+}
+
+.ackm-chatassist-form-group input:focus,
+.ackm-chatassist-form-group select:focus {
+    outline: none;
+    border-color: var(--ackm-chatassist-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: white;
+}
+
+.ackm-chatassist-form-group input::placeholder {
+    color: var(--ackm-chatassist-gray-400);
+    font-weight: 400;
+}
+
+.ackm-chatassist-form-group .description {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ackm-chatassist-gray-600);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* ============================================
+   Premium Checkbox & Radio
+   ============================================ */
+.ackm-chatassist-form-group input[type="checkbox"],
+.ackm-chatassist-form-group input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    accent-color: var(--ackm-chatassist-primary);
+    transition: var(--ackm-chatassist-transition-fast);
+}
+
+.ackm-chatassist-form-group input[type="checkbox"]:hover,
+.ackm-chatassist-form-group input[type="radio"]:hover {
+    transform: scale(1.1);
+}
+
+.ackm-chatassist-form-group .radio-group {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.ackm-chatassist-form-group .radio-group label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: var(--ackm-chatassist-radius-md);
+    transition: var(--ackm-chatassist-transition);
+    color: var(--ackm-chatassist-gray-700);
+}
+
+.ackm-chatassist-form-group .radio-group label:hover {
+    background: var(--ackm-chatassist-gray-50);
+    color: var(--ackm-chatassist-primary);
+}
+
+/* ============================================
+   Premium Color Picker
+   ============================================ */
+.ackm-chatassist-color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ackm-chatassist-color-preview {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--ackm-chatassist-radius-md);
+    border: 3px solid var(--ackm-chatassist-gray-300);
+    cursor: pointer;
+    box-shadow: var(--ackm-chatassist-shadow-md);
+    transition: var(--ackm-chatassist-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-color-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 48%, rgba(0, 0, 0, 0.1) 48%, rgba(0, 0, 0, 0.1) 52%, transparent 52%);
+}
+
+.ackm-chatassist-color-preview:hover {
+    transform: scale(1.05);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+    border-color: var(--ackm-chatassist-primary);
+}
+
+/* ============================================
+   Premium Icon Grid
+   ============================================ */
+.ackm-chatassist-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.ackm-chatassist-icon-option {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--ackm-chatassist-gray-300);
+    border-radius: var(--ackm-chatassist-radius-md);
+    cursor: pointer;
+    font-size: 28px;
+    background: white;
+    transition: var(--ackm-chatassist-transition);
+    position: relative;
+}
+
+.ackm-chatassist-icon-option::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--ackm-chatassist-radius-md);
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    opacity: 0;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-icon-option:hover {
+    border-color: var(--ackm-chatassist-primary);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+.ackm-chatassist-icon-option:hover::before {
+    opacity: 0.1;
+}
+
+.ackm-chatassist-icon-option.selected {
+    border-color: var(--ackm-chatassist-primary);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.ackm-chatassist-icon-option.selected::before {
+    opacity: 0.15;
+}
+
+/* ============================================
+   Premium Range Slider
+   ============================================ */
+.ackm-chatassist-range-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ackm-chatassist-range-slider {
+    flex: 1;
+    height: 8px;
+    border-radius: 10px;
+    background: var(--ackm-chatassist-gray-200);
+    outline: none;
+    -webkit-appearance: none;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-range-slider:hover {
+    background: var(--ackm-chatassist-gray-300);
+}
+
+.ackm-chatassist-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    cursor: pointer;
+    box-shadow: var(--ackm-chatassist-shadow-md);
+    transition: var(--ackm-chatassist-transition);
+    border: 3px solid white;
+}
+
+.ackm-chatassist-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+}
+
+.ackm-chatassist-range-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: var(--ackm-chatassist-shadow-md);
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-range-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+}
+
+.ackm-chatassist-range-value {
+    width: 80px;
+    padding: 10px 14px;
+    border: 2px solid var(--ackm-chatassist-gray-300);
+    border-radius: var(--ackm-chatassist-radius-md);
+    text-align: center;
+    font-weight: 700;
+    color: var(--ackm-chatassist-primary);
+    background: white;
+    font-size: 15px;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-range-value:focus {
+    border-color: var(--ackm-chatassist-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* ============================================
+   Premium Preview Card
+   ============================================ */
+.ackm-chatassist-preview-card {
+    background: white;
+    border-radius: var(--ackm-chatassist-radius-xl);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+    padding: 40px;
+    position: sticky;
+    top: 30px;
+    border: 1px solid var(--ackm-chatassist-gray-200);
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-preview-card:hover {
+    box-shadow: var(--ackm-chatassist-shadow-xl);
+}
+
+.ackm-chatassist-preview-card h2 {
+    margin: 0 0 32px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ackm-chatassist-dark);
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ackm-chatassist-gray-100);
+    letter-spacing: -0.3px;
+}
+
+.ackm-chatassist-preview-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+.ackm-chatassist-preview-widget {
+    width: 100%;
+    max-width: 400px;
+    height: 580px;
+    border-radius: var(--ackm-chatassist-radius-2xl);
+    box-shadow: var(--ackm-chatassist-shadow-2xl);
+    overflow: hidden;
+    background: white;
+    position: relative;
+    border: 1px solid var(--ackm-chatassist-gray-200);
+}
+
+.ackm-chatassist-preview-header {
+    padding: 24px;
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-preview-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.ackm-chatassist-preview-title {
+    font-weight: 700;
+    font-size: 19px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.2px;
+}
+
+.ackm-chatassist-preview-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--ackm-chatassist-transition);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+}
+
+.ackm-chatassist-preview-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.ackm-chatassist-preview-body {
+    height: calc(100% - 76px);
+    background: var(--ackm-chatassist-gray-50);
+    padding: 24px;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* ============================================
+   Premium Buttons
+   ============================================ */
+.ackm-chatassist-btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--ackm-chatassist-radius-md);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--ackm-chatassist-transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+    opacity: 0;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-btn:hover::before {
+    opacity: 1;
+}
+
+.ackm-chatassist-btn-primary {
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    color: white;
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+.ackm-chatassist-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ackm-chatassist-shadow-lg);
+}
+
+.ackm-chatassist-btn-primary:active {
+    transform: translateY(0);
+}
+
+.ackm-chatassist-btn-secondary {
+    background: white;
+    color: var(--ackm-chatassist-primary);
+    border: 2px solid var(--ackm-chatassist-primary);
+    box-shadow: var(--ackm-chatassist-shadow-sm);
+}
+
+.ackm-chatassist-btn-secondary:hover {
+    background: var(--ackm-chatassist-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+.ackm-chatassist-btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 2px solid var(--ackm-chatassist-gray-100);
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   Premium Help Section
+   ============================================ */
+.ackm-chatassist-help-box {
+    background: linear-gradient(135deg, var(--ackm-chatassist-gray-50) 0%, white 100%);
+    border-left: 4px solid var(--ackm-chatassist-primary);
+    border-radius: var(--ackm-chatassist-radius-lg);
+    padding: 24px;
+    margin-top: 32px;
+    box-shadow: var(--ackm-chatassist-shadow-sm);
+}
+
+.ackm-chatassist-help-box h3 {
+    margin: 0 0 16px 0;
+    color: var(--ackm-chatassist-dark);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.ackm-chatassist-help-box ol {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.ackm-chatassist-help-box li {
+    margin-bottom: 10px;
+    color: var(--ackm-chatassist-gray-700);
+    line-height: 1.7;
+}
+
+.ackm-chatassist-help-box a {
+    color: var(--ackm-chatassist-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--ackm-chatassist-transition-fast);
+    border-bottom: 2px solid transparent;
+}
+
+.ackm-chatassist-help-box a:hover {
+    border-bottom-color: var(--ackm-chatassist-primary);
+}
+
+/* ============================================
+   Premium Support Links
+   ============================================ */
+.ackm-chatassist-support-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 2px solid var(--ackm-chatassist-gray-200);
+    flex-wrap: wrap;
+}
+
+.ackm-chatassist-support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: white;
+    border: 2px solid var(--ackm-chatassist-gray-300);
+    border-radius: var(--ackm-chatassist-radius-md);
+    text-decoration: none;
+    color: var(--ackm-chatassist-gray-700);
+    font-weight: 600;
+    transition: var(--ackm-chatassist-transition);
+    box-shadow: var(--ackm-chatassist-shadow-sm);
+}
+
+.ackm-chatassist-support-link .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: var(--ackm-chatassist-transition-fast);
+}
+
+.ackm-chatassist-support-link:hover {
+    border-color: var(--ackm-chatassist-primary);
+    color: var(--ackm-chatassist-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+.ackm-chatassist-support-link:hover .dashicons {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ============================================
+   Premium Loading Spinner
+   ============================================ */
+.ackm-chatassist-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--ackm-chatassist-gray-200);
+    border-top: 4px solid var(--ackm-chatassist-primary);
+    border-radius: 50%;
+    animation: ackm-chatassist-spin 1s linear infinite;
+}
+
+@keyframes ackm-chatassist-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Premium Preview Button
+   ============================================ */
+.ackm-chatassist-preview-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: var(--ackm-chatassist-shadow-xl);
+    transition: var(--ackm-chatassist-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.ackm-chatassist-preview-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--ackm-chatassist-transition);
+}
+
+.ackm-chatassist-preview-button:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--ackm-chatassist-shadow-2xl);
+}
+
+.ackm-chatassist-preview-button:hover::before {
+    opacity: 1;
+}
+
+.ackm-chatassist-preview-button:active {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   Premium Notices
+   ============================================ */
+.ackm-chatassist-notice {
+    padding: 18px 24px;
+    border-radius: var(--ackm-chatassist-radius-lg);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--ackm-chatassist-shadow-sm);
+    border-left: 4px solid;
+}
+
+.ackm-chatassist-notice-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    color: #065f46;
+    border-left-color: var(--ackm-chatassist-success);
+}
+
+.ackm-chatassist-notice-error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+    color: #991b1b;
+    border-left-color: var(--ackm-chatassist-error);
+}
+
+/* ============================================
+   Premium SVG Upload
+   ============================================ */
+.ackm-chatassist-svg-upload {
+    border: 2px dashed var(--ackm-chatassist-gray-300);
+    border-radius: var(--ackm-chatassist-radius-lg);
+    padding: 40px;
+    text-align: center;
+    transition: var(--ackm-chatassist-transition);
+    cursor: pointer;
+    background: var(--ackm-chatassist-gray-50);
+}
+
+.ackm-chatassist-svg-upload:hover {
+    border-color: var(--ackm-chatassist-primary);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+.ackm-chatassist-svg-upload.has-image {
+    border-style: solid;
+    padding: 24px;
+    background: white;
+}
+
+.ackm-chatassist-svg-preview {
+    max-width: 120px;
+    max-height: 120px;
+    margin: 0 auto;
+    border-radius: var(--ackm-chatassist-radius-md);
+    overflow: hidden;
+    box-shadow: var(--ackm-chatassist-shadow-md);
+}
+
+/* ============================================
+   Premium Scrollbar
+   ============================================ */
+.ackm-chatassist-preview-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.ackm-chatassist-preview-body::-webkit-scrollbar-track {
+    background: var(--ackm-chatassist-gray-100);
+    border-radius: 10px;
+}
+
+.ackm-chatassist-preview-body::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary) 0%, var(--ackm-chatassist-accent) 100%);
+    border-radius: 10px;
+    border: 2px solid var(--ackm-chatassist-gray-100);
+}
+
+.ackm-chatassist-preview-body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--ackm-chatassist-primary-dark) 0%, var(--ackm-chatassist-gradient-end) 100%);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 782px) {
+    .ackm-chatassist-admin-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .ackm-chatassist-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ackm-chatassist-tabs {
+        padding: 6px;
+        gap: 4px;
+    }
+    
+    .ackm-chatassist-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .ackm-chatassist-tab .dashicons {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+    }
+    
+    .ackm-chatassist-icon-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .ackm-chatassist-header {
+        padding: 30px 24px;
+    }
+    
+    .ackm-chatassist-header h1 {
+        font-size: 28px;
+    }
+    
+    .ackm-chatassist-settings-card,
+    .ackm-chatassist-preview-card {
+        padding: 24px;
+    }
+}
+
+/* ============================================
+   Premium Animations
+   ============================================ */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.ackm-chatassist-form-group {
+    animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+}
+
+.ackm-chatassist-form-group:nth-child(1) { animation-delay: 0.05s; }
+.ackm-chatassist-form-group:nth-child(2) { animation-delay: 0.1s; }
+.ackm-chatassist-form-group:nth-child(3) { animation-delay: 0.15s; }
+.ackm-chatassist-form-group:nth-child(4) { animation-delay: 0.2s; }
+.ackm-chatassist-form-group:nth-child(5) { animation-delay: 0.25s; }
+.ackm-chatassist-form-group:nth-child(6) { animation-delay: 0.3s; }
+
+/* ============================================
+   WordPress Admin Compatibility
+   ============================================ */
+.ackm-chatassist-admin-wrapper .wrap {
+    margin: 0;
+}
+
+.ackm-chatassist-admin-wrapper h1 {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   Premium Details/Summary
+   ============================================ */
+.ackm-chatassist-help-box details {
+    cursor: pointer;
+}
+
+.ackm-chatassist-help-box summary {
+    font-weight: 600;
+    color: var(--ackm-chatassist-primary);
+    padding: 12px;
+    border-radius: var(--ackm-chatassist-radius-md);
+    transition: var(--ackm-chatassist-transition);
+    user-select: none;
+}
+
+.ackm-chatassist-help-box summary:hover {
+    background: var(--ackm-chatassist-gray-50);
+}
+
+.ackm-chatassist-help-box details[open] summary {
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   Premium Table Styles
+   ============================================ */
+.ackm-chatassist-settings-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ackm-chatassist-settings-card table thead th {
+    background: var(--ackm-chatassist-gray-50);
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--ackm-chatassist-dark);
+    border-bottom: 2px solid var(--ackm-chatassist-gray-200);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ackm-chatassist-settings-card table tbody tr {
+    border-bottom: 1px solid var(--ackm-chatassist-gray-200);
+    transition: var(--ackm-chatassist-transition-fast);
+}
+
+.ackm-chatassist-settings-card table tbody tr:hover {
+    background: var(--ackm-chatassist-gray-50);
+}
+
+.ackm-chatassist-settings-card table tbody td {
+    padding: 14px 16px;
+    color: var(--ackm-chatassist-gray-700);
+    font-size: 14px;
+}
+
+/* ============================================
+   Checkbox Pills (inline checkbox groups)
+   Provides a clearly visible checked/unchecked state for
+   Day-of-Week, Device and WooCommerce Pages selectors.
+   ============================================ */
+.ackm-chatassist-checkbox-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 14px;
+    background: #fff;
+    border: 2px solid var(--ackm-chatassist-gray-300, #d1d5db);
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ackm-chatassist-gray-700, #374151);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--ackm-chatassist-primary, #6366f1);
+    flex-shrink: 0;
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill:hover {
+    border-color: var(--ackm-chatassist-primary, #6366f1);
+    color: var(--ackm-chatassist-primary, #6366f1);
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill:has(input[type="checkbox"]:checked) {
+    background: var(--ackm-chatassist-primary, #6366f1);
+    border-color: var(--ackm-chatassist-primary, #6366f1);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.25);
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill:has(input[type="checkbox"]:checked) span {
+    color: #fff;
+}
+
+.ackm-chatassist-form-group .ackm-chatassist-checkbox-pill:has(input[type="checkbox"]:focus-visible) {
+    outline: 2px solid var(--ackm-chatassist-primary, #6366f1);
+    outline-offset: 2px;
+}
+
+/* Fallback for browsers without :has() — style the input itself larger */
+@supports not (selector(:has(*))) {
+    .ackm-chatassist-form-group .ackm-chatassist-checkbox-pill input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        transform: scale(1.1);
+    }
+}
+
+/* ============================================
+   Admin Utility Classes
+   Replaces common inline style attributes with reusable classes
+   so admin screens load all styling via wp_enqueue_style().
+   ============================================ */
+.ackm-chatassist-mt-5  { margin-top: 5px; }
+.ackm-chatassist-mt-8  { margin-top: 8px; }
+.ackm-chatassist-mt-10 { margin-top: 10px; }
+.ackm-chatassist-mt-15 { margin-top: 15px; }
+.ackm-chatassist-mt-20 { margin-top: 20px; }
+.ackm-chatassist-mt-25 { margin-top: 25px; }
+.ackm-chatassist-mt-28 { margin-top: 28px; }
+.ackm-chatassist-mt-30 { margin-top: 30px; }
+.ackm-chatassist-mb-0  { margin-bottom: 0; }
+.ackm-chatassist-mr-10 { margin-right: 10px; }
+.ackm-chatassist-mr-15 { margin-right: 15px; }
+
+.ackm-chatassist-flex-row {
+    display: flex;
+    align-items: center;
+}
+.ackm-chatassist-flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.ackm-chatassist-flex-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.ackm-chatassist-flex-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+.ackm-chatassist-flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.ackm-chatassist-w-full { width: 100%; }
+.ackm-chatassist-w-80 { width: 80px; }
+.ackm-chatassist-textarea-mono {
+    width: 100%;
+    font-family: monospace;
+}
+
+.ackm-chatassist-link-plain {
+    text-decoration: none;
+}
+
+.ackm-chatassist-help-summary {
+    cursor: pointer;
+    color: #0073aa;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.ackm-chatassist-help-box {
+    padding: 15px;
+    background: #f8f8f8;
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.ackm-chatassist-empty-state {
+    text-align: center;
+    color: var(--ackm-chatassist-gray-500);
+    padding: 60px 30px;
+}
+.ackm-chatassist-empty-icon {
+    font-size: 64px;
+    color: var(--ackm-chatassist-gray-300);
+    opacity: 0.5;
+}
+
+.ackm-chatassist-chart-wrapper {
+    max-width: 700px;
+    height: 300px;
+    margin-top: 15px;
+}
+
+/* Hidden utility for admin (replaces inline style="display: none;") */
+.ackm-chatassist-hidden { display: none; }
+.ackm-chatassist-icon-section { /* layout container */ }
+
+/* SVG preview icon inside live preview button */
+.ackm-chatassist-preview-svg {
+    max-width: 60%;
+    max-height: 60%;
+    filter: brightness(0) invert(1);
+}
+
+/* ============================================
+   Sponsor / Buy-me-a-coffee link styles
+   ============================================ */
+.ackm-chatassist-coffee-link {
+    background: linear-gradient(135deg, #FFDD00 0%, #FFB800 100%);
+    color: #1a1a1a !important;
+    border-color: #FFDD00 !important;
+}
+.ackm-chatassist-coffee-link:hover {
+    background: linear-gradient(135deg, #FFB800 0%, #FFDD00 100%);
+    color: #000 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 184, 0, 0.35);
+}
+.ackm-chatassist-coffee-link .dashicons {
+    color: #1a1a1a !important;
+}
+
+.ackm-chatassist-sponsor-link {
+    background: linear-gradient(135deg, #ea4aaa 0%, #ce3a8e 100%);
+    color: #fff !important;
+    border-color: #ea4aaa !important;
+}
+.ackm-chatassist-sponsor-link:hover {
+    background: linear-gradient(135deg, #ce3a8e 0%, #ea4aaa 100%);
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(234, 74, 170, 0.35);
+}
+.ackm-chatassist-sponsor-link .dashicons {
+    color: #fff !important;
+}

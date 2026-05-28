@@ -1,8 +1,8 @@
 <?php
 /**
- * Extended display rules for Intelligize ChatAssist
+ * Extended display rules for ChatAssist
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 2.0.0
  */
 
@@ -13,17 +13,17 @@ if (!defined('ABSPATH')) {
 /**
  * Extended Display Rules - Day of week, device, geo, WooCommerce
  */
-class IntelligizeDigital_ChatAssist_Extended_Rules {
+class Ackm_ChatAssist_Extended_Rules {
 
     /**
      * Check day-of-week rules
      */
     public static function check_day_rules() {
-        $day_based = get_option('intelligizedigital_chatassist_day_based', 'no');
+        $day_based = get_option('ackm_chatassist_day_based', 'no');
         if ($day_based !== 'yes') {
             return true;
         }
-        $days = get_option('intelligizedigital_chatassist_show_days', array());
+        $days = get_option('ackm_chatassist_show_days', array());
         if (empty($days)) {
             return true;
         }
@@ -44,11 +44,11 @@ class IntelligizeDigital_ChatAssist_Extended_Rules {
      * Check device rules (desktop/mobile/tablet)
      */
     public static function check_device_rules() {
-        $device_based = get_option('intelligizedigital_chatassist_device_based', 'no');
+        $device_based = get_option('ackm_chatassist_device_based', 'no');
         if ($device_based !== 'yes') {
             return true;
         }
-        $devices = get_option('intelligizedigital_chatassist_show_on_devices', array('desktop', 'mobile', 'tablet'));
+        $devices = get_option('ackm_chatassist_show_on_devices', array('desktop', 'mobile', 'tablet'));
         if (empty($devices)) {
             return true;
         }
@@ -73,11 +73,11 @@ class IntelligizeDigital_ChatAssist_Extended_Rules {
      * Check geo rules (country - requires client-side or external service)
      */
     public static function check_geo_rules() {
-        $geo_based = get_option('intelligizedigital_chatassist_geo_based', 'no');
+        $geo_based = get_option('ackm_chatassist_geo_based', 'no');
         if ($geo_based !== 'yes') {
             return true;
         }
-        $countries = get_option('intelligizedigital_chatassist_show_countries', array());
+        $countries = get_option('ackm_chatassist_show_countries', array());
         if (empty($countries)) {
             return true;
         }
@@ -92,8 +92,8 @@ class IntelligizeDigital_ChatAssist_Extended_Rules {
      * Get user country from cookie (set by frontend JS) or header
      */
     private static function get_user_country() {
-        if (isset($_COOKIE['intelligizedigital_chatassist_country'])) {
-            return sanitize_text_field(wp_unslash($_COOKIE['intelligizedigital_chatassist_country']));
+        if (isset($_COOKIE['ackm_chatassist_country'])) {
+            return sanitize_text_field(wp_unslash($_COOKIE['ackm_chatassist_country']));
         }
         if (isset($_SERVER['HTTP_CF_IPCOUNTRY'])) {
             return sanitize_text_field(wp_unslash($_SERVER['HTTP_CF_IPCOUNTRY']));
@@ -105,7 +105,7 @@ class IntelligizeDigital_ChatAssist_Extended_Rules {
      * Check WooCommerce page rules - show only on selected WooCommerce pages
      */
     public static function check_woocommerce_rules() {
-        $woo_pages = get_option('intelligizedigital_chatassist_woo_pages', array());
+        $woo_pages = get_option('ackm_chatassist_woo_pages', array());
         if (empty($woo_pages) || !function_exists('is_woocommerce')) {
             return true;
         }

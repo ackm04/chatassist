@@ -1,5 +1,5 @@
 /**
- * Preview functionality for intelligizedigital_chatassist Chat Widget
+ * Preview functionality for ackm_chatassist Chat Widget
  */
 (function($) {
     'use strict';
@@ -7,19 +7,19 @@
     $(document).ready(function() {
         // Preview functionality
         var previewButton = $('#load-preview-button');
-        var previewContainer = $('#intelligizedigital_chatassist-chat-widget-preview');
-        var widgetUrl = $('#intelligizedigital_chatassist_url').val();
-        var widgetPosition = $('#intelligizedigital_chatassist_position').val() || 'right';
-        var widgetTitle = $('#intelligizedigital_chatassist_title').val() || 'Chat Support';
-        var widgetColor = $('#intelligizedigital_chatassist_color').val() || '#667eea';
-        var widgetIcon = $('#intelligizedigital_chatassist_icon').val() || '💬';
-        var widgetIconType = $('input[name="intelligizedigital_chatassist_icon_type"]:checked').val() || 'emoji';
-        var widgetSvgIcon = $('#intelligizedigital_chatassist_svg_icon').val() || '';
-        var widgetZoom = $('#intelligizedigital_chatassist_zoom').val() || '100';
+        var previewContainer = $('#ackm_chatassist-chat-widget-preview');
+        var widgetUrl = $('#ackm_chatassist_url').val();
+        var widgetPosition = $('#ackm_chatassist_position').val() || 'right';
+        var widgetTitle = $('#ackm_chatassist_title').val() || 'Chat Support';
+        var widgetColor = $('#ackm_chatassist_color').val() || '#667eea';
+        var widgetIcon = $('#ackm_chatassist_icon').val() || '💬';
+        var widgetIconType = $('input[name="ackm_chatassist_icon_type"]:checked').val() || 'emoji';
+        var widgetSvgIcon = $('#ackm_chatassist_svg_icon').val() || '';
+        var widgetZoom = $('#ackm_chatassist_zoom').val() || '100';
         
         // Device preview functionality
-        var deviceButtons = $('.intelligizedigital_chatassist-chat-widget-preview-device-button');
-        var previewFrame = $('.intelligizedigital_chatassist-chat-widget-preview-frame');
+        var deviceButtons = $('.ackm_chatassist-chat-widget-preview-device-button');
+        var previewFrame = $('.ackm_chatassist-chat-widget-preview-frame');
         
         deviceButtons.on('click', function() {
             var device = $(this).data('device');
@@ -31,9 +31,9 @@
         });
         
         // Preview chat button functionality
-        var previewChatButton = $('.intelligizedigital_chatassist-chat-widget-preview-button');
-        var previewChatPopup = $('.intelligizedigital_chatassist-chat-widget-preview-popup');
-        var previewChatClose = $('.intelligizedigital_chatassist-chat-widget-preview-close');
+        var previewChatButton = $('.ackm_chatassist-chat-widget-preview-button');
+        var previewChatPopup = $('.ackm_chatassist-chat-widget-preview-popup');
+        var previewChatClose = $('.ackm_chatassist-chat-widget-preview-close');
         
         previewChatButton.on('click', function() {
             previewChatPopup.addClass('open');
@@ -48,17 +48,17 @@
         
         // Update preview when settings change
         function updatePreview() {
-            widgetUrl = $('#intelligizedigital_chatassist_url').val();
-            widgetPosition = $('#intelligizedigital_chatassist_position').val() || 'right';
-            widgetTitle = $('#intelligizedigital_chatassist_title').val() || 'Chat Support';
-            widgetColor = $('#intelligizedigital_chatassist_color').val() || '#667eea';
-            widgetIcon = $('#intelligizedigital_chatassist_icon').val() || '💬';
-            widgetIconType = $('input[name="intelligizedigital_chatassist_icon_type"]:checked').val() || 'emoji';
-            widgetSvgIcon = $('#intelligizedigital_chatassist_svg_icon').val() || '';
-            widgetZoom = $('#intelligizedigital_chatassist_zoom').val() || '100';
+            widgetUrl = $('#ackm_chatassist_url').val();
+            widgetPosition = $('#ackm_chatassist_position').val() || 'right';
+            widgetTitle = $('#ackm_chatassist_title').val() || 'Chat Support';
+            widgetColor = $('#ackm_chatassist_color').val() || '#667eea';
+            widgetIcon = $('#ackm_chatassist_icon').val() || '💬';
+            widgetIconType = $('input[name="ackm_chatassist_icon_type"]:checked').val() || 'emoji';
+            widgetSvgIcon = $('#ackm_chatassist_svg_icon').val() || '';
+            widgetZoom = $('#ackm_chatassist_zoom').val() || '100';
             
             // Update position
-            var previewWidget = $('.intelligizedigital_chatassist-preview-widget');
+            var previewWidget = $('.ackm_chatassist-preview-widget');
             previewWidget.removeClass('left right');
             previewWidget.addClass(widgetPosition);
             
@@ -95,20 +95,20 @@
         updatePreview();
         
         // Update preview when settings change
-        $('#intelligizedigital_chatassist_title, #intelligizedigital_chatassist_icon').on('input', updatePreview);
-        $('#intelligizedigital_chatassist_color').wpColorPicker({
+        $('#ackm_chatassist_title, #ackm_chatassist_icon').on('input', updatePreview);
+        $('#ackm_chatassist_color').wpColorPicker({
             change: function(event, ui) {
                 setTimeout(updatePreview, 100);
             }
         });
-        $('#intelligizedigital_chatassist_position, input[name="intelligizedigital_chatassist_icon_type"]').on('change', updatePreview);
-        $('#intelligizedigital_chatassist_zoom').on('input', updatePreview);
+        $('#ackm_chatassist_position, input[name="ackm_chatassist_icon_type"]').on('change', updatePreview);
+        $('#ackm_chatassist_zoom').on('input', updatePreview);
         
         // Handle emoji selection
-        $('.intelligizedigital_chatassist-icon-option').on('click', function() {
+        $('.ackm_chatassist-icon-option').on('click', function() {
             var emoji = $(this).data('emoji');
-            $('#intelligizedigital_chatassist_icon').val(emoji);
-            $('.intelligizedigital_chatassist-icon-option').removeClass('selected');
+            $('#ackm_chatassist_icon').val(emoji);
+            $('.ackm_chatassist-icon-option').removeClass('selected');
             $(this).addClass('selected');
             updatePreview();
         });
@@ -133,8 +133,8 @@
             
             mediaUploader.on('select', function() {
                 var attachment = mediaUploader.state().get('selection').first().toJSON();
-                $('#intelligizedigital_chatassist_svg_icon').val(attachment.url);
-                $('.intelligizedigital_chatassist-svg-preview').html('<img src="' + attachment.url + '" alt="SVG Icon">');
+                $('#ackm_chatassist_svg_icon').val(attachment.url);
+                $('.ackm_chatassist-svg-preview').html('<img src="' + attachment.url + '" alt="SVG Icon">');
                 updatePreview();
             });
             
@@ -144,7 +144,7 @@
         // Load preview button
         previewButton.on('click', function() {
             // Save settings first
-            $('#intelligizedigital_chatassist-settings-form').submit();
+            $('#ackm_chatassist-settings-form').submit();
             
             // Show preview after a short delay
             setTimeout(function() {

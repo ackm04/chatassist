@@ -1,5 +1,5 @@
 /**
- * Additional admin functionality for intelligizedigital_chatassist Chat Widget
+ * Additional admin functionality for ackm_chatassist Chat Widget
  */
 (function($) {
     'use strict';
@@ -15,11 +15,11 @@
             $button.prop('disabled', true).html('<span class="dashicons dashicons-update"></span> Saving...');
             
             // Submit the form
-            $('#intelligizedigital_chatassist-settings-form').submit();
+            $('#ackm_chatassist-settings-form').submit();
         });
         
         // Allow Enter key to submit the form as well
-        $('#intelligizedigital_chatassist_url').on('keypress', function(e) {
+        $('#ackm_chatassist_url').on('keypress', function(e) {
             if (e.which === 13) { // Enter key
                 e.preventDefault();
                 $('#load-preview-button').click();
@@ -34,14 +34,14 @@
         
         // Initialize color picker with live preview update
         if ($.fn.wpColorPicker) {
-            $('.intelligizedigital-chatassist-color-picker').wpColorPicker({
+            $('.ackm-chatassist-color-picker').wpColorPicker({
                 change: function(event, ui) {
                     var color = ui.color.toString();
                     
                     // Update all preview elements with the new color
                     $('#preview-widget-header, #preview-widget-header-full').css('background', 'linear-gradient(135deg, ' + color + ' 0%, ' + adjustColorBrightness(color, -20) + ' 100%)');
                     $('#preview-chat-button').css('background', 'linear-gradient(135deg, ' + color + ' 0%, ' + adjustColorBrightness(color, -20) + ' 100%)');
-                    $('.intelligizedigital-chatassist-color-preview').css('background-color', color);
+                    $('.ackm-chatassist-color-preview').css('background-color', color);
                     
                     // Update loading spinner color
                     $('.preview-loading-spinner div').css('border-top-color', color);

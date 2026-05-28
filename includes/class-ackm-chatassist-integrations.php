@@ -2,7 +2,7 @@
 /**
  * Direct Chat Integrations - Intercom, Crisp, Drift, Tawk.to, LiveChat
  *
- * @package Intelligize_ChatAssist
+ * @package Ackm_ChatAssist
  * @since 4.0.0
  */
 
@@ -13,15 +13,15 @@ if (!defined('ABSPATH')) {
 /**
  * Native integrations for popular chat services
  */
-class IntelligizeDigital_ChatAssist_Integrations {
+class Ackm_ChatAssist_Integrations {
 
     public static function init() {
         add_action('wp_enqueue_scripts', array(__CLASS__, 'maybe_enqueue_integration'));
-        add_filter('intelligizedigital_chatassist_should_display', array(__CLASS__, 'maybe_hide_widget'), 1);
+        add_filter('ackm_chatassist_should_display', array(__CLASS__, 'maybe_hide_widget'), 1);
     }
 
     public static function get_active_integration() {
-        return get_option('intelligizedigital_chatassist_native_integration', '');
+        return get_option('ackm_chatassist_native_integration', '');
     }
 
     public static function maybe_hide_widget($show) {
@@ -29,7 +29,7 @@ class IntelligizeDigital_ChatAssist_Integrations {
         if (empty($integration)) {
             return $show;
         }
-        if (get_option('intelligizedigital_chatassist_integration_replace_widget', 'yes') === 'yes') {
+        if (get_option('ackm_chatassist_integration_replace_widget', 'yes') === 'yes') {
             return false;
         }
         return $show;
@@ -47,7 +47,7 @@ class IntelligizeDigital_ChatAssist_Integrations {
     }
 
     private static function enqueue_intercom() {
-        $app_id = get_option('intelligizedigital_chatassist_intercom_app_id', '');
+        $app_id = get_option('ackm_chatassist_intercom_app_id', '');
         if (empty($app_id)) {
             return;
         }
@@ -59,13 +59,13 @@ class IntelligizeDigital_ChatAssist_Integrations {
         $js .= 'var x=d.getElementsByTagName("script")[0];x.parentNode.insertBefore(s,x);};';
         $js .= 'if(document.readyState==="complete"){l();}else if(w.attachEvent){w.attachEvent("onload",l);}';
         $js .= 'else{w.addEventListener("load",l,false);}}})();';
-        wp_register_script('intelligizedigital-chatassist-intercom', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-        wp_enqueue_script('intelligizedigital-chatassist-intercom');
-        wp_add_inline_script('intelligizedigital-chatassist-intercom', $js);
+        wp_register_script('ackm-chatassist-intercom', false, array(), ACKM_CHATASSIST_VERSION, true);
+        wp_enqueue_script('ackm-chatassist-intercom');
+        wp_add_inline_script('ackm-chatassist-intercom', $js);
     }
 
     private static function enqueue_crisp() {
-        $site_id = get_option('intelligizedigital_chatassist_crisp_site_id', '');
+        $site_id = get_option('ackm_chatassist_crisp_site_id', '');
         if (empty($site_id)) {
             return;
         }
@@ -74,13 +74,13 @@ class IntelligizeDigital_ChatAssist_Integrations {
         $js .= '(function(){var d=document,s=d.createElement("script");';
         $js .= 's.src="https://client.crisp.chat/l.js";s.async=1;';
         $js .= 'd.getElementsByTagName("head")[0].appendChild(s);})();';
-        wp_register_script('intelligizedigital-chatassist-crisp', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-        wp_enqueue_script('intelligizedigital-chatassist-crisp');
-        wp_add_inline_script('intelligizedigital-chatassist-crisp', $js);
+        wp_register_script('ackm-chatassist-crisp', false, array(), ACKM_CHATASSIST_VERSION, true);
+        wp_enqueue_script('ackm-chatassist-crisp');
+        wp_add_inline_script('ackm-chatassist-crisp', $js);
     }
 
     private static function enqueue_drift() {
-        $id = get_option('intelligizedigital_chatassist_drift_id', '');
+        $id = get_option('ackm_chatassist_drift_id', '');
         if (empty($id)) {
             return;
         }
@@ -93,14 +93,14 @@ class IntelligizeDigital_ChatAssist_Integrations {
         $js .= 'e.type="text/javascript",e.async=!0,e.src="https://js.driftt.com/include/"+t+"/"+t+".js";';
         $js .= 'var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}};';
         $js .= 'drift.SNIPPET_VERSION="0.3.1",drift.load("' . $id . '");}();';
-        wp_register_script('intelligizedigital-chatassist-drift', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-        wp_enqueue_script('intelligizedigital-chatassist-drift');
-        wp_add_inline_script('intelligizedigital-chatassist-drift', $js);
+        wp_register_script('ackm-chatassist-drift', false, array(), ACKM_CHATASSIST_VERSION, true);
+        wp_enqueue_script('ackm-chatassist-drift');
+        wp_add_inline_script('ackm-chatassist-drift', $js);
     }
 
     private static function enqueue_tawk() {
-        $id  = get_option('intelligizedigital_chatassist_tawk_id', '');
-        $key = get_option('intelligizedigital_chatassist_tawk_key', '');
+        $id  = get_option('ackm_chatassist_tawk_id', '');
+        $key = get_option('ackm_chatassist_tawk_key', '');
         if (empty($id) || empty($key)) {
             return;
         }
@@ -110,13 +110,13 @@ class IntelligizeDigital_ChatAssist_Integrations {
         $js .= '(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];';
         $js .= 's1.async=true;s1.src="https://embed.tawk.to/' . $id . '/' . $key . '";';
         $js .= 's1.charset="UTF-8";s1.setAttribute("crossorigin","*");s0.parentNode.insertBefore(s1,s0);})();';
-        wp_register_script('intelligizedigital-chatassist-tawk', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-        wp_enqueue_script('intelligizedigital-chatassist-tawk');
-        wp_add_inline_script('intelligizedigital-chatassist-tawk', $js);
+        wp_register_script('ackm-chatassist-tawk', false, array(), ACKM_CHATASSIST_VERSION, true);
+        wp_enqueue_script('ackm-chatassist-tawk');
+        wp_add_inline_script('ackm-chatassist-tawk', $js);
     }
 
     private static function enqueue_livechat() {
-        $license = get_option('intelligizedigital_chatassist_livechat_license', '');
+        $license = get_option('ackm_chatassist_livechat_license', '');
         if (empty($license)) {
             return;
         }
@@ -130,9 +130,9 @@ class IntelligizeDigital_ChatAssist_Integrations {
         $js .= 'init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",';
         $js .= 'n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};';
         $js .= '!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,["__lc"]));';
-        wp_register_script('intelligizedigital-chatassist-livechat', false, array(), INTELLIGIZEDIGITAL_CHATASSIST_VERSION, true);
-        wp_enqueue_script('intelligizedigital-chatassist-livechat');
-        wp_add_inline_script('intelligizedigital-chatassist-livechat', $js);
+        wp_register_script('ackm-chatassist-livechat', false, array(), ACKM_CHATASSIST_VERSION, true);
+        wp_enqueue_script('ackm-chatassist-livechat');
+        wp_add_inline_script('ackm-chatassist-livechat', $js);
     }
 
     public static function get_integration_options() {
