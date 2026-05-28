@@ -135,6 +135,6 @@ See [LICENSE](LICENSE) for full text or visit https://www.gnu.org/licenses/gpl-2
 
 ## 💛 Made with love by Ajay
 
-If you ship this on a client site or use it in production, drop me a line at **intelligizedigital@gmail.com** — I love seeing how people use it.
+If you ship this on a client site or use it in production, drop me a line at **ackm04@gmail.com** — I love seeing how people use it.
 
 **[☕ Buy me a coffee](https://www.buymeacoffee.com/ackm04)** • **[❤️ Sponsor on GitHub](https://github.com/sponsors/ackm04)** • **[🌟 Star this repo](https://github.com/erp-linker/erplinker-chatassist)**
