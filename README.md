@@ -97,7 +97,7 @@ That's it. Browse the other tabs (Display Rules, Analytics, Marketing, Integrati
 
 ## 🔐 Security
 
-All admin endpoints are nonce-protected and capability-gated (`manage_ackm_chatassist` capability with `manage_options` fallback). All user input is sanitized on save and escaped on output (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`). All inline scripts use `wp_add_inline_script()` with `wp_json_encode()`'d data. SVG icons are rendered as `<img>` only (no inline embedding). Found a security issue? Please email **intelligizedigital@gmail.com** rather than opening a public issue.
+All admin endpoints are nonce-protected and capability-gated (`manage_ackm_chatassist` capability with `manage_options` fallback). All user input is sanitized on save and escaped on output (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`). All inline scripts use `wp_add_inline_script()` with `wp_json_encode()`'d data. SVG icons are rendered as `<img>` only (no inline embedding). Found a security issue? Please email **ackm04@gmail.com** rather than opening a public issue.
 
 ---
 
